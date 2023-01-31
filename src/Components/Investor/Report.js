@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import InvAuthContext from "../Store/Inv-authContext";
 
 function Report() {
+  const invAuthCtx = useContext(InvAuthContext);
+
+  const navigate = useNavigate();
+
+  const [file, setFile] = useState(null);
+
   const [compName, setCompName] = useState("");
   const [month, setMonth] = useState("");
 
@@ -33,8 +41,90 @@ function Report() {
   const [numTrainee, setNumTrainee] = useState("");
   const [durTraining, setDurTraining] = useState("");
 
+  const onInputChange = (e) => {
+    console.log(e.target.files);
+    setFile(e.target.files[0]);
+  };
+
+  const report = [
+    {
+      companyName: compName,
+      month: month,
+      total_number_of_workers: [
+        {
+          male: totalMale,
+          female: totalFemale,
+          expected: totalExp,
+          total: totalTotal,
+        },
+      ],
+      number_of_workers_hired: [
+        {
+          male: hiredMale,
+          female: hiredFemale,
+          expected: hiredExp,
+          total: hiredTotal,
+        },
+      ],
+      number_of_workers_resigned: [
+        {
+          male: firedMale,
+          female: firedFemale,
+          expected: firedExp,
+          total: firedTotal,
+        },
+      ],
+      average_worker_per_month: avgWorker,
+      turn_over_rate: turnOver,
+      job_creation: jobCre,
+      cumulative_new_jobs_created: creJobYr,
+      planned_monthly_report: planExport,
+      amount_of_export: amountExport,
+      monthly_import_substitute: monthlyImport,
+      amount_import_substitute: amountImport,
+      certificate_type: cerType,
+      number_of_trainee: numTrainee,
+      duration_of_training: durTraining,
+    },
+  ];
+
   const submitHandler = (event) => {
     event.preventDefault();
+
+    const data = new FormData();
+
+    const re = JSON.stringify(report);
+
+    data.append("file", file);
+
+    data.append("str", re);
+
+    const da = data;
+
+    const addreport = async () => {
+      const response = await fetch("http://localhost:8080/report/post", {
+        method: "POST",
+        // filename: da,
+        body: da,
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + invAuthCtx.token,
+        },
+      });
+
+      if (!response.ok) {
+        console.log("something is wrong");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.msg === "Report Submitted Successfully") {
+        navigate("/investor/myrequest");
+      }
+    };
+
+    addreport();
   };
 
   return (
@@ -424,6 +514,11 @@ function Report() {
             </div>
           </div>
         </div> */}
+
+          <div>
+            <label htmlFor="">upload file</label>
+            <input type="file" onChange={onInputChange} />
+          </div>
 
           <div className="w-44 m-10 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
             <button>Send</button>

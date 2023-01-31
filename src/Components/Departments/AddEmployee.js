@@ -1,8 +1,11 @@
 import React, { useState, useContext } from "react";
 import DepAuthContext from "../Store/Dep-authContext";
+import { useNavigate } from "react-router-dom";
 
 function AddEmployee() {
   const depAuthCtx = useContext(DepAuthContext);
+
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -38,6 +41,10 @@ function AddEmployee() {
       const data = await response.json();
 
       console.log(data);
+
+      if (data.msg === "User created successfully") {
+        navigate("/department/employee");
+      }
     };
 
     signUpEmployee();

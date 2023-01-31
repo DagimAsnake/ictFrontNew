@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import EmpAuthContext from "../Store/Emp-authContext";
 
 function DelInv() {
+  const navigate = useNavigate();
+
   const empAuthCtx = useContext(EmpAuthContext);
 
   const { userid } = useParams();
@@ -28,16 +30,20 @@ function DelInv() {
 
       console.log(data);
       setIsLoading(false);
+
+      if (data.msg === "Investor Account Deleted Successfully") {
+        navigate("/superadmin/investors");
+      }
     };
 
     AssignedTask();
-  }, [userid, empAuthCtx]);
+  }, [userid, empAuthCtx, navigate]);
 
   return (
     <>
       <div className="bg-neutral-50">
         <div className="text-3xl text-center  text-blue-500 font-bold">
-          {isLoading && <h4>Loading...</h4>}
+          {isLoading && <h4>Deleteing...</h4>}
           {!isLoading && <h1>Investor Removed Successfully</h1>}
         </div>
       </div>

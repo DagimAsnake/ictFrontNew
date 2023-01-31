@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddDepartment() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,6 +32,10 @@ function AddDepartment() {
       const data = await response.json();
 
       console.log(data);
+
+      if (data.msg === "Created A department Successfully") {
+        navigate("/superadmin/departments");
+      }
     };
 
     signupDepartment();

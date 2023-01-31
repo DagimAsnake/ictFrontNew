@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import DepAuthContext from "../Store/Dep-authContext";
 
 function DeleteEmp() {
+  const navigate = useNavigate();
+
   const depAuthCtx = useContext(DepAuthContext);
 
   const { userid } = useParams();
@@ -25,16 +27,20 @@ function DeleteEmp() {
 
       console.log(data);
       setIsLoading(false);
+
+      if (data.msg === "User Deleted Successfully") {
+        navigate("/department/employee");
+      }
     };
 
     AssignedTask();
-  }, [userid, depAuthCtx]);
+  }, [userid, depAuthCtx, navigate]);
 
   return (
     <>
       <div className="bg-neutral-50">
         <div className="text-3xl text-center  text-blue-500 font-bold">
-          {isLoading && <h4>Loading...</h4>}
+          {isLoading && <h4>Deleteing...</h4>}
           {!isLoading && <h1>Employee Removed Successfully</h1>}
         </div>
       </div>

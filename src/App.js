@@ -41,6 +41,9 @@ import AsToDep from "./Components/SuperAdmin/AsToDep";
 import DelDep from "./Components/SuperAdmin/DelDep";
 import DelInv from "./Components/SuperAdmin/DelInv";
 import IncomReport from "./Components/SuperAdmin/IncomReport";
+import ViewReport from "./Components/SuperAdmin/ViewReport";
+import Folder from "./Components/SuperAdmin/Folder";
+import Download from "./Components/SuperAdmin/Download";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -111,6 +114,7 @@ function App() {
           path="/superadmin/"
           element={
             <>
+              {/* <LayoutSup /> */}
               {empAuthCtx.isEmpLoggedIn && <LayoutSup />}
               {!empAuthCtx.isEmpLoggedIn && <LogEmployee />}
             </>
@@ -127,9 +131,13 @@ function App() {
           <Route path="department/delete/:userid" element={<DelDep />} />
           <Route path="investor/delete/:userid" element={<DelInv />} />
           <Route path="reports" element={<IncomReport />} />
+          <Route path="viewreport/:name" element={<ViewReport />} />
+          <Route path="viewreport/download/:name" element={<Folder />} />
+          <Route path="viewreport/download" element={<Download />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />
+        <Route path="/loginInvestor" element={<LogInvestor />} />
         <Route path="/loginInvestor" element={<LogInvestor />} />
       </Routes>
     </>

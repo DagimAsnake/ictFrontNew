@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddInvestor() {
+  const navigate = useNavigate();
+
   const [companyName, setCompanyName] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -36,6 +39,10 @@ function AddInvestor() {
       const data = await response.json();
 
       console.log(data);
+
+      if (data.msg === "Investor Account created successfully") {
+        navigate("/superadmin/investors");
+      }
     };
 
     signUpInvestor();

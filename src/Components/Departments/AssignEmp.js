@@ -40,37 +40,38 @@ function Assign() {
           {!isLoading && requestEmployee.length <= 0 && (
             <h3 className="mt-5">There are no Employees.</h3>
           )}
-
-          <div className="w-full bg-blue-500 border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-20">
-            <h6 className="text-white text-lg m-3">Employee Lists</h6>
-            <div className="bg-white rounded-lg rounded-t-2xl">
-              {!isLoading &&
-                requestEmployee.map((emp) => {
-                  return (
-                    <div className="grid grid-cols-3 p-3 border-b-2 mx-5 items-center">
-                      <p className="" key={emp._id}>
-                        {emp.firstName} {emp.lastName}
-                      </p>
-                      <p className="starability-result" data-rating={3}></p>
-                      <p className="flex justify-between">
-                        <Link
-                          to={`/department/employee/${emp._id}`}
-                          className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border"
-                        >
-                          Details
-                        </Link>
-                        <Link
-                          to={`/department/assign/${taskid}/${emp._id}`}
-                          className="w-44 text-center text-green-500 rounded-lg hover:bg-green-400 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border"
-                        >
-                          Assign Task
-                        </Link>
-                      </p>
-                    </div>
-                  );
-                })}
+          {!isLoading && requestEmployee.length > 0 && (
+            <div className="w-full bg-blue-500 border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-20">
+              <h6 className="text-white text-lg m-3">Employee Lists</h6>
+              <div className="bg-white rounded-lg rounded-t-2xl">
+                {!isLoading &&
+                  requestEmployee.map((emp) => {
+                    return (
+                      <div className="grid grid-cols-3 p-3 border-b-2 mx-5 items-center">
+                        <p className="" key={emp._id}>
+                          {emp.firstName} {emp.lastName}
+                        </p>
+                        <p className="starability-result" data-rating={3}></p>
+                        <p className="flex justify-between">
+                          <Link
+                            to={`/department/employee/${emp._id}`}
+                            className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border"
+                          >
+                            Details
+                          </Link>
+                          <Link
+                            to={`/department/assign/${taskid}/${emp._id}`}
+                            className="w-44 text-center text-green-500 rounded-lg hover:bg-green-400 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border"
+                          >
+                            Assign Task
+                          </Link>
+                        </p>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

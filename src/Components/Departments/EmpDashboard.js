@@ -26,13 +26,13 @@ function EmpDashboard() {
 
   return (
     <>
-      <div className="m-16">
+      <div className="m-11">
         {isLoading && <h3>Loading......</h3>}
         {!isLoading && requestEmployee.length <= 0 && (
           <h3 className="mt-5">There are no Employees.</h3>
         )}
         {!isLoading && requestEmployee.length > 0 && (
-          <div className="w-full max-w-4xl bg-blue-500 border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-20">
+          <div className="w-7/12 bg-blue-500 border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-20">
             <h6 className="text-white text-lg m-3">Employee Lists</h6>
             <div className="bg-white rounded-lg rounded-t-2xl">
               {requestEmployee.map((emp) => {
