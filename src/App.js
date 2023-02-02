@@ -44,6 +44,11 @@ import IncomReport from "./Components/SuperAdmin/IncomReport";
 import ViewReport from "./Components/SuperAdmin/ViewReport";
 import Folder from "./Components/SuperAdmin/Folder";
 import Download from "./Components/SuperAdmin/Download";
+import CreateService from "./Components/SuperAdmin/CreateService";
+import DetailDepartments from "./Components/SuperAdmin/DetailDepartments";
+import DetailInvestors from "./Components/SuperAdmin/DetailInvestors";
+import EditDepartment from "./Components/SuperAdmin/EditDepartment";
+import EditInvestor from "./Components/SuperAdmin/EditInvestor";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -134,6 +139,11 @@ function App() {
           <Route path="viewreport/:name" element={<ViewReport />} />
           <Route path="viewreport/download/:name" element={<Folder />} />
           <Route path="viewreport/download" element={<Download />} />
+          <Route path="service" element={<CreateService />} />
+          <Route path="dep/details/:depid" element={<DetailDepartments />} />
+          <Route path="inv/details/:invid" element={<DetailInvestors />} />
+          <Route path="dep/edit/:depid" element={<EditDepartment />} />
+          <Route path="inv/edit/:invid" element={<EditInvestor />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

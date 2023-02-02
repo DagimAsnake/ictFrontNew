@@ -57,7 +57,10 @@ function Department() {
                       >
                         <div>{dep.title}</div>
                         <div>
-                          <Link className=" text-blue-500">
+                          <Link
+                            to={`/superadmin/dep/details/${dep.id}`}
+                            className=" text-blue-500"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -76,7 +79,7 @@ function Department() {
                           </Link>
                         </div>
                         <div>
-                          <Link>
+                          <Link to={`/superadmin/dep/edit/${dep.id}`}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"

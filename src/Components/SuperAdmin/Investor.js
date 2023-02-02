@@ -57,7 +57,10 @@ function Investor() {
                       >
                         <div>{dep.companyName}</div>
                         <div>
-                          <Link className="text-blue-500">
+                          <Link
+                            to={`/superadmin/inv/details/${dep._id}`}
+                            className="text-blue-500"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -76,7 +79,7 @@ function Investor() {
                           </Link>
                         </div>
                         <div>
-                          <Link>
+                          <Link to={`/superadmin/inv/edit/${dep._id}`}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
