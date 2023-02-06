@@ -15,6 +15,10 @@ import AssignEmp from "./Components/Departments/AssignEmp";
 import AddEmployee from "./Components/Departments/AddEmployee";
 import AsEmpTo from "./Components/Departments/AsEmpTo";
 import Decline from "./Components/Departments/Decline";
+import IncomReport from "./Components/Departments/IncomReport";
+import ViewReport from "./Components/Departments/ViewReport";
+import Folder from "./Components/Departments/Folder";
+import Download from "./Components/Departments/Download";
 import DeleteEmp from "./Components/Departments/DeleteEmp";
 import LayoutEmp from "./Components/Employee/LayoutEmp";
 import Tasks from "./Components/Employee/Tasks";
@@ -40,15 +44,21 @@ import AssignDepartment from "./Components/SuperAdmin/AssignDepartment";
 import AsToDep from "./Components/SuperAdmin/AsToDep";
 import DelDep from "./Components/SuperAdmin/DelDep";
 import DelInv from "./Components/SuperAdmin/DelInv";
-import IncomReport from "./Components/SuperAdmin/IncomReport";
-import ViewReport from "./Components/SuperAdmin/ViewReport";
-import Folder from "./Components/SuperAdmin/Folder";
-import Download from "./Components/SuperAdmin/Download";
 import CreateService from "./Components/SuperAdmin/CreateService";
 import DetailDepartments from "./Components/SuperAdmin/DetailDepartments";
 import DetailInvestors from "./Components/SuperAdmin/DetailInvestors";
 import EditDepartment from "./Components/SuperAdmin/EditDepartment";
 import EditInvestor from "./Components/SuperAdmin/EditInvestor";
+import AddClients from "./Components/SuperAdmin/AddClients";
+import Clients from "./Components/SuperAdmin/Clients";
+import DetailClient from "./Components/SuperAdmin/DetailClient";
+import EditClient from "./Components/SuperAdmin/EditClient";
+import DelCli from "./Components/SuperAdmin/DelCli";
+import AddTest from "./Components/SuperAdmin/AddTest";
+import Test from "./Components/SuperAdmin/Test";
+import DetailTest from "./Components/SuperAdmin/DetailTest";
+import EditTest from "./Components/SuperAdmin/EditTest";
+import DelTest from "./Components/SuperAdmin/DelTest";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -83,6 +93,10 @@ function App() {
           <Route path="assign/:taskid/:userid" element={<AsEmpTo />} />
           <Route path=":id/decline" element={<Decline />} />
           <Route path="delete/:userid" element={<DeleteEmp />} />
+          <Route path="reports" element={<IncomReport />} />
+          <Route path="viewreport/:name" element={<ViewReport />} />
+          <Route path="viewreport/download/:name" element={<Folder />} />
+          <Route path="viewreport/download" element={<Download />} />
         </Route>
         <Route
           path="/employee/"
@@ -135,15 +149,21 @@ function App() {
           <Route path="assign/:taskid/:depid" element={<AsToDep />} />
           <Route path="department/delete/:userid" element={<DelDep />} />
           <Route path="investor/delete/:userid" element={<DelInv />} />
-          <Route path="reports" element={<IncomReport />} />
-          <Route path="viewreport/:name" element={<ViewReport />} />
-          <Route path="viewreport/download/:name" element={<Folder />} />
-          <Route path="viewreport/download" element={<Download />} />
           <Route path="service" element={<CreateService />} />
           <Route path="dep/details/:depid" element={<DetailDepartments />} />
           <Route path="inv/details/:invid" element={<DetailInvestors />} />
           <Route path="dep/edit/:depid" element={<EditDepartment />} />
           <Route path="inv/edit/:invid" element={<EditInvestor />} />
+          <Route path="addclient" element={<AddClients />} />
+          <Route path="clients" element={<Clients />} />
+          <Route path="cli/details/:cliid" element={<DetailClient />} />
+          <Route path="cli/edit/:cliid" element={<EditClient />} />
+          <Route path="client/delete/:cliid" element={<DelCli />} />
+          <Route path="addtest" element={<AddTest />} />
+          <Route path="tests" element={<Test />} />
+          <Route path="test/details/:testid" element={<DetailTest />} />
+          <Route path="test/edit/:testid" element={<EditTest />} />
+          <Route path="test/delete/:testid" element={<DelTest />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

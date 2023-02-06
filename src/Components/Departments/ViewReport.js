@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import EmpAuthContext from "../Store/Emp-authContext";
+import DepAuthContext from "../Store/Dep-authContext";
 import { useParams } from "react-router-dom";
 import Download from "./Download";
 
 function ViewReport() {
   const { name } = useParams();
 
-  const empAuthCtx = useContext(EmpAuthContext);
+  const depAuthCtx = useContext(DepAuthContext);
 
   const [requestData, setRequestData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,7 @@ function ViewReport() {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + empAuthCtx.token,
+            Authorization: "Bearer " + depAuthCtx.token,
           },
         }
       );
@@ -28,7 +28,7 @@ function ViewReport() {
       setIsLoading(false);
     };
     fetchEmployee();
-  }, [empAuthCtx, name]);
+  }, [depAuthCtx, name]);
 
   return (
     <>

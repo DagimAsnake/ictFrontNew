@@ -41,6 +41,8 @@ function Report() {
   const [numTrainee, setNumTrainee] = useState("");
   const [durTraining, setDurTraining] = useState("");
 
+  const [challenge, setChallenge] = useState("");
+
   const onInputChange = (e) => {
     console.log(e.target.files);
     setFile(e.target.files[0]);
@@ -85,6 +87,8 @@ function Report() {
       certificate_type: cerType,
       number_of_trainee: numTrainee,
       duration_of_training: durTraining,
+      challenges: challenge,
+      departmentName: "investor",
     },
   ];
 
@@ -487,33 +491,25 @@ function Report() {
             </div>
           </div>
 
-          {/* <div className="border-x-4 mx-10 border-b-4 rounded-lg">
-          <div className="text-2xl text-blue-500 text-center mx-96 bg-white border border-gray-200 rounded-2xl shadow-md p-5 my-10">
-            Covid 19 Status
-          </div>
-
-          <div className="text-center bg-white border border-gray-200 rounded-2xl shadow-xl shadow-blue-300 p-5 m-9">
-            <div className="grid grid-cols-3 text-lg border-b-4">
-              <div>Negative </div>
-              <div>Positive</div>
-              <div>Recover </div>
+          <div className="border-x-4 mx-10 border-b-4 rounded-lg">
+            <div className="text-2xl text-blue-500 text-center mx-96 bg-white border border-gray-200 rounded-2xl shadow-md p-5 my-10">
+              Any Challenges this Month?
             </div>
-            <div className="grid grid-cols-3 my-5 items-center">
-              <input
-                type="number"
-                className="w-3/4 ml-6 bg-white border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
-              />
-              <input
-                type="number"
-                className="w-3/4 ml-6 bg-white border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
-              />
-              <input
-                type="number"
-                className="w-3/4 ml-6 bg-white border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
-              />
+            <div>
+              <div className="rounded-2xl shadow-xl shadow-blue-300 p-5 m-9">
+                <textarea
+                  onChange={(e) => {
+                    setChallenge(e.target.value);
+                  }}
+                  rows="5"
+                  className="block p-2.5 w-full text-lg text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Challenges"
+                >
+                  {challenge}
+                </textarea>
+              </div>
             </div>
           </div>
-        </div> */}
 
           <div>
             <label htmlFor="">upload file</label>

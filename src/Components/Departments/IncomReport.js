@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import EmpAuthContext from "../Store/Emp-authContext";
+import DepAuthContext from "../Store/Dep-authContext";
 
 function IncomReport() {
-  const empAuthCtx = useContext(EmpAuthContext);
+  const depAuthCtx = useContext(DepAuthContext);
 
   const [requestEmployee, setRequestEmployee] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +13,7 @@ function IncomReport() {
       const response = await fetch("http://localhost:8080/user/investor", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + empAuthCtx.token,
+          Authorization: "Bearer " + depAuthCtx.token,
         },
       });
       const data = await response.json();
@@ -22,7 +22,7 @@ function IncomReport() {
       setIsLoading(false);
     };
     fetchEmployee();
-  }, [empAuthCtx]);
+  }, [depAuthCtx]);
   return (
     <>
       <div className="bg-neutral-50">
@@ -39,7 +39,7 @@ function IncomReport() {
         <div className="grid grid-cols-3 gap-10 mb-10 mx-5">
           {requestEmployee.map((name) => {
             return (
-              <Link to={`/superadmin/viewreport/${name.companyName}`}>
+              <Link to={`/department/viewreport/${name.companyName}`}>
                 <div
                   className="flex flex-col mx-5 shadow-md hover:shadow-blue-300 hover:shadow-lg bg-white rounded-lg p-5 text-center text-blue-500"
                   key={name._id}
