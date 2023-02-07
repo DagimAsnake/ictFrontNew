@@ -45,6 +45,10 @@ import AsToDep from "./Components/SuperAdmin/AsToDep";
 import DelDep from "./Components/SuperAdmin/DelDep";
 import DelInv from "./Components/SuperAdmin/DelInv";
 import CreateService from "./Components/SuperAdmin/CreateService";
+import Services from "./Components/SuperAdmin/Services";
+import DetailService from "./Components/SuperAdmin/DetailService";
+import EditService from "./Components/SuperAdmin/EditService";
+import DelSer from "./Components/SuperAdmin/DelSer";
 import DetailDepartments from "./Components/SuperAdmin/DetailDepartments";
 import DetailInvestors from "./Components/SuperAdmin/DetailInvestors";
 import EditDepartment from "./Components/SuperAdmin/EditDepartment";
@@ -149,7 +153,11 @@ function App() {
           <Route path="assign/:taskid/:depid" element={<AsToDep />} />
           <Route path="department/delete/:userid" element={<DelDep />} />
           <Route path="investor/delete/:userid" element={<DelInv />} />
-          <Route path="service" element={<CreateService />} />
+          <Route path="addservice" element={<CreateService />} />
+          <Route path="services" element={<Services />} />
+          <Route path="ser/details/:serid" element={<DetailService />} />
+          <Route path="ser/edit/:serid" element={<EditService />} />
+          <Route path="ser/delete/:serid" element={<DelSer />} />
           <Route path="dep/details/:depid" element={<DetailDepartments />} />
           <Route path="inv/details/:invid" element={<DetailInvestors />} />
           <Route path="dep/edit/:depid" element={<EditDepartment />} />

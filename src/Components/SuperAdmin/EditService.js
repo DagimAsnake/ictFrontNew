@@ -1,34 +1,29 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import EmpAuthContext from "../Store/Emp-authContext";
 
-function CreateService() {
+function EditService() {
   const empAuthCtx = useContext(EmpAuthContext);
 
   const navigate = useNavigate();
+
+  const { serid } = useParams();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [department, setDepartment] = useState("");
   const [icon, setIcon] = useState(null);
 
-  const formSubmitHandler = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("department", department);
-    formData.append("icon", icon);
-
-    const addrequest = async () => {
-      const response = await fetch("http://localhost:8080/user/services/post", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: "Bearer " + empAuthCtx.token,
-        },
-      });
+  useEffect(() => {
+    const addreport = async () => {
+      const response = await fetch(
+        `http://localhost:8080/user/services/${serid}`,
+        {
+          headers: {
+            Authorization: "Bearer " + empAuthCtx.token,
+          },
+        }
+      );
 
       if (!response.ok) {
         console.log("something is wrong");
@@ -36,13 +31,46 @@ function CreateService() {
 
       const data = await response.json();
       console.log(data);
+      setTitle(data.msg.title);
+      setDepartment(data.msg.department.title);
+      setDescription(data.msg.description);
+      setIcon(data.msg.icon);
+    };
 
-      if (data.msg === "Service Added Successfully") {
+    addreport();
+  }, [serid, empAuthCtx]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("department", department);
+    formData.append("icon", icon);
+
+    const addreport = async () => {
+      const response = await fetch(
+        `http://localhost:8080/user/services/${serid}`,
+        {
+          method: "PUT",
+          body: formData,
+        }
+      );
+      console.log(response);
+      if (!response.ok) {
+        console.log("something is wrong");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.msg === "Service Updated Successfully") {
         navigate("/superadmin/services");
       }
     };
 
-    addrequest();
+    addreport();
   };
 
   return (
@@ -54,7 +82,7 @@ function CreateService() {
 
         <div className="m-5 mx-96">
           <div className="w-full bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
-            <form onSubmit={formSubmitHandler}>
+            <form onSubmit={submitHandler}>
               <div className="text-xl font-bold text-blue-500 my-3">
                 <h4 className="mb-2">Title</h4>
                 <div className="relative">
@@ -173,15 +201,14 @@ function CreateService() {
                 <div>
                   <div>
                     <textarea
+                      value={description}
                       onChange={(e) => {
                         setDescription(e.target.value);
                       }}
                       rows="5"
                       className="block p-2.5 w-full text-lg text-gray-900 bg-white rounded-lg border border-blue-300 focus:ring-blue-500 focus:border-blue-500"
                       placeholder="Description"
-                    >
-                      {description}
-                    </textarea>
+                    ></textarea>
                   </div>
                 </div>
               </div>
@@ -197,4 +224,4 @@ function CreateService() {
   );
 }
 
-export default CreateService;
+export default EditService;
