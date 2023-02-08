@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Star.css";
 import DepAuthContext from "../Store/Dep-authContext";
 import { useParams } from "react-router-dom";
+import AsEmpTo from "./AsEmpTo";
 
 function Assign() {
   const { taskid } = useParams();
@@ -11,6 +12,8 @@ function Assign() {
 
   const [requestEmployee, setRequestEmployee] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [priority, setPriority] = useState("");
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -27,7 +30,13 @@ function Assign() {
       console.log(taskid);
     };
     fetchEmployee();
-  }, [depAuthCtx, taskid]);
+  }, [depAuthCtx, taskid, priority]);
+
+  const assignHandler = () => {
+    <AsEmpTo priority={priority} />;
+  };
+
+  console.log(priority);
 
   return (
     <>
@@ -42,7 +51,34 @@ function Assign() {
           )}
           {!isLoading && requestEmployee.length > 0 && (
             <div className="w-full bg-blue-500 border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-20">
-              <h6 className="text-white text-lg m-3">Employee Lists</h6>
+              <div className="grid grid-cols-2">
+                <h6 className="text-white text-lg m-3">Employee Lists</h6>
+                <div className="flex items-center text-2xl">
+                  <label for="2" className="block text-white">
+                    Task Priority
+                  </label>
+                  <select className="ml-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
+                    <option
+                      value="High"
+                      onChange={(e) => setPriority(e.target.value)}
+                    >
+                      High
+                    </option>
+                    <option
+                      value="Medium"
+                      onChange={(e) => setPriority(e.target.value)}
+                    >
+                      Medium
+                    </option>
+                    <option
+                      value="Low"
+                      onChange={(e) => setPriority(e.target.value)}
+                    >
+                      Low
+                    </option>
+                  </select>
+                </div>
+              </div>
               <div className="bg-white rounded-lg rounded-t-2xl">
                 {!isLoading &&
                   requestEmployee.map((emp) => {
@@ -52,6 +88,7 @@ function Assign() {
                           {emp.firstName} {emp.lastName}
                         </p>
                         <p className="starability-result" data-rating={3}></p>
+
                         <p className="flex justify-between">
                           <Link
                             to={`/department/employee/${emp._id}`}
@@ -63,7 +100,7 @@ function Assign() {
                             to={`/department/assign/${taskid}/${emp._id}`}
                             className="w-44 text-center text-green-500 rounded-lg hover:bg-green-400 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border"
                           >
-                            Assign Task
+                            <button onClick={assignHandler}>Assign Task</button>
                           </Link>
                         </p>
                       </div>

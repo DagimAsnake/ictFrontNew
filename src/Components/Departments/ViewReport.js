@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import DepAuthContext from "../Store/Dep-authContext";
 import { useParams } from "react-router-dom";
 import Download from "./Download";
+import { saveAs } from "file-saver";
+import kena from "../../assets/kena.jpg";
 
 function ViewReport() {
   const { name } = useParams();
@@ -30,6 +32,10 @@ function ViewReport() {
     fetchEmployee();
   }, [depAuthCtx, name]);
 
+  // const downloading = () => {
+  //   saveAs(``, "image.jpg");
+  // };
+
   return (
     <>
       <div className="bg-neutral-50">
@@ -44,9 +50,10 @@ function ViewReport() {
 
           {!isLoading && requestData.length > 0 && (
             <div className="w-full bg-neutral-300 border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-20">
-              <div className="grid grid-cols-2 text-center p-3 border-b-2 mx-5">
+              <div className="grid grid-cols-3 text-center p-3 border-b-2 mx-5">
                 <h6 className="text-lg">Filename</h6>
-                <h6 className="text-lg">Download</h6>
+                <h6 className="text-lg">Download File</h6>
+                <h6 className="text-lg">Download Image</h6>
               </div>
               <div className="bg-white rounded-lg rounded-t-2xl">
                 {!isLoading &&
@@ -54,7 +61,7 @@ function ViewReport() {
                     return (
                       <div>
                         <div
-                          className="grid grid-cols-2 text-center py-3 border-b-2"
+                          className="grid grid-cols-3 text-center py-3 border-b-2"
                           key={task._id}
                         >
                           <p className="">{task.month}</p>
@@ -78,6 +85,19 @@ function ViewReport() {
                             </svg> */}
                           <Download data={task} />
                           {/* </Link> */}
+                          <img
+                            className="w-[65px] h-[65px] mb-[25px]"
+                            src={
+                              "http://localhost:8080/" + task.additional_file
+                            }
+                            alt="additional file"
+                            onClick={() =>
+                              saveAs(
+                                `http://localhost:8080/ + ${task.additional_file}`,
+                                "image.jpg"
+                              )
+                            }
+                          />
                         </div>
                       </div>
                     );

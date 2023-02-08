@@ -42,11 +42,12 @@ function DepRequest() {
                   className="w-full bg-white border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-10"
                   key={task._id}
                 >
-                  <div className="grid grid-cols-2">
+                  <div className="grid grid-cols-3">
                     <div className="flex justify-start p-5">
                       <h4 className="text-blue-500 text-2xl mr-4">Company:</h4>{" "}
                       <div className="pt-2 text-lg"> {task.companyName} </div>
                     </div>
+
                     <div className="flex justify-start p-5">
                       <h4 className="text-blue-500 text-2xl mr-4">
                         Service Category:

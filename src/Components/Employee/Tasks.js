@@ -107,7 +107,7 @@ function Tasks() {
                           Details
                         </div>
                       </Link>
-                      <Link to={`/employee/escalate/${task._id}`} className="">
+                      <Link to={`/employee/decreason/${task._id}`} className="">
                         <div className="text-red-500 rounded-lg hover:bg-red-400 mb-6 px-5 hover:text-white  p-2 text-lg font-bold cursor-pointer tracking-wider border m-4">
                           Escalate
                         </div>

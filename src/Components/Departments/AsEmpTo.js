@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import DepAuthContext from "../Store/Dep-authContext";
 
-function AsEmpTo() {
+function AsEmpTo({ priority }) {
   const depAuthCtx = useContext(DepAuthContext);
 
   const { taskid, userid } = useParams();
@@ -14,6 +14,10 @@ function AsEmpTo() {
       const response = await fetch(
         `http://localhost:8080/task/${taskid}/${userid}`,
         {
+          method: "post",
+          body: JSON.stringify({
+            priority: priority,
+          }),
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + depAuthCtx.token,
@@ -25,12 +29,14 @@ function AsEmpTo() {
       }
       const data = await response.json();
 
+      console.log(priority);
+
       console.log(data);
       setIsLoading(false);
     };
 
     AssignedTask();
-  }, [taskid, userid, depAuthCtx]);
+  }, [taskid, userid, depAuthCtx, priority]);
 
   return (
     <>

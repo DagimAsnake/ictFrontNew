@@ -25,6 +25,7 @@ import Tasks from "./Components/Employee/Tasks";
 import EmpDetails from "./Components/Employee/EmpDetails";
 import EscalateTask from "./Components/Employee/EscalateTask";
 import Profile from "./Components/Employee/Profile";
+import DeclineReason from "./Components/Employee/DeclineReason";
 import LayoutInv from "./Components/Investor/LayoutInv";
 import InvDashboard from "./Components/Investor/InvDashboard";
 import Request from "./Components/Investor/Request";
@@ -115,6 +116,7 @@ function App() {
           <Route path="task/:id" element={<EmpDetails />} />
           <Route path="escalate/:id" element={<EscalateTask />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="decreason/:id" element={<DeclineReason />} />
         </Route>
         <Route
           path="/investor/"

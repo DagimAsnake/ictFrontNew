@@ -43,75 +43,86 @@ function Report() {
 
   const [challenge, setChallenge] = useState("");
 
-  const onInputChange = (e) => {
-    console.log(e.target.files);
-    setFile(e.target.files[0]);
-  };
-
-  const report = [
-    {
-      companyName: compName,
-      month: month,
-      total_number_of_workers: [
-        {
-          male: totalMale,
-          female: totalFemale,
-          expected: totalExp,
-          total: totalTotal,
-        },
-      ],
-      number_of_workers_hired: [
-        {
-          male: hiredMale,
-          female: hiredFemale,
-          expected: hiredExp,
-          total: hiredTotal,
-        },
-      ],
-      number_of_workers_resigned: [
-        {
-          male: firedMale,
-          female: firedFemale,
-          expected: firedExp,
-          total: firedTotal,
-        },
-      ],
-      average_worker_per_month: avgWorker,
-      turn_over_rate: turnOver,
-      job_creation: jobCre,
-      cumulative_new_jobs_created: creJobYr,
-      planned_monthly_report: planExport,
-      amount_of_export: amountExport,
-      monthly_import_substitute: monthlyImport,
-      amount_import_substitute: amountImport,
-      certificate_type: cerType,
-      number_of_trainee: numTrainee,
-      duration_of_training: durTraining,
-      challenges: challenge,
-      departmentName: "investor",
-    },
-  ];
+  // const report = [
+  //   {
+  // companyName: compName,
+  // month: month,
+  // const total_number_of_workers = {
+  //   male: totalMale,
+  //   female: totalFemale,
+  //   expected: totalExp,
+  //   total: totalTotal,
+  // };
+  // const number_of_workers_hired = {
+  //   male: hiredMale,
+  //   female: hiredFemale,
+  //   expected: hiredExp,
+  //   total: hiredTotal,
+  // };
+  // const number_of_workers_resigned = {
+  //   male: firedMale,
+  //   female: firedFemale,
+  //   expected: firedExp,
+  //   total: firedTotal,
+  // };
+  // average_worker_per_month: avgWorker,
+  // turn_over_rate: turnOver,
+  // job_creation: jobCre,
+  // cumulative_new_jobs_created: creJobYr,
+  // planned_monthly_report: planExport,
+  // amount_of_export: amountExport,
+  // monthly_import_substitute: monthlyImport,
+  // amount_import_substitute: amountImport,
+  // certificate_type: cerType,
+  // number_of_trainee: numTrainee,
+  // duration_of_training: durTraining,
+  // challenges: challenge,
+  const departmentName = "investor";
+  //   },
+  // ];
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const data = new FormData();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("companyName", compName);
+    formData.append("month", month);
+    formData.append("totalMale", totalMale);
+    formData.append("totalFemale", totalFemale);
+    formData.append("totalExp", totalExp);
+    formData.append("totalTotal", totalTotal);
+    formData.append("hiredMale", hiredMale);
+    formData.append("hiredFemale", hiredFemale);
+    formData.append("hiredExp", hiredExp);
+    formData.append("hiredTotal", hiredTotal);
+    formData.append("firedMale", firedMale);
+    formData.append("firedFemale", firedFemale);
+    formData.append("firedExp", firedExp);
+    formData.append("firedTotal", firedTotal);
 
-    const re = JSON.stringify(report);
-
-    data.append("file", file);
-
-    data.append("str", re);
-
-    const da = data;
+    // formData.append("total_number_of_worker", total_number_of_workers);
+    // formData.append("number_of_workers_hired", number_of_workers_hired);
+    // formData.append("number_of_workers_resigned", number_of_workers_resigned);
+    formData.append("average_worker_per_month", avgWorker);
+    formData.append("turn_over_rate", turnOver);
+    formData.append("job_creation", jobCre);
+    formData.append("cumulative_new_jobs_created", creJobYr);
+    formData.append("planned_monthly_report", planExport);
+    formData.append("amount_of_export", amountExport);
+    formData.append("monthly_import_substitute", monthlyImport);
+    formData.append("certificate_type", cerType);
+    formData.append("amount_import_substitute", amountImport);
+    formData.append("number_of_trainee", numTrainee);
+    formData.append("duration_of_training", durTraining);
+    formData.append("challenges", challenge);
+    formData.append("departmentName", departmentName);
 
     const addreport = async () => {
       const response = await fetch("http://localhost:8080/report/post", {
         method: "POST",
-        // filename: da,
-        body: da,
+        body: formData,
         headers: {
-          // "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + invAuthCtx.token,
         },
       });
@@ -123,7 +134,7 @@ function Report() {
       const data = await response.json();
       console.log(data);
 
-      if (data.msg === "Report Submitted Successfully") {
+      if (data.msg === "Report Sent Successfully") {
         navigate("/investor/myrequest");
       }
     };
@@ -513,7 +524,11 @@ function Report() {
 
           <div>
             <label htmlFor="">upload file</label>
-            <input type="file" onChange={onInputChange} />
+            <input
+              type="file"
+              name="file"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
           </div>
 
           <div className="w-44 m-10 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">

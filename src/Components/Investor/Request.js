@@ -16,7 +16,6 @@ function Request() {
   // const [facility, setFacility] = useState("General Maintenance");
   // const [investor, setInvestor] = useState("Make Promotion");
   const [desc, setDesc] = useState("");
-  const [priority, setPriority] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
@@ -29,7 +28,7 @@ function Request() {
         body: JSON.stringify({
           companyName: invName,
           description: desc,
-          priority: priority,
+          priority: "None",
           taskType: category,
           location: workLoc,
           contact_person_phone: phone,
@@ -334,7 +333,7 @@ function Request() {
                 </div>
               </div>
 
-              <div className="w-3/4">
+              {/* <div className="w-3/4">
                 <h4 className="w-2/5 bg-white border border-gray-200 rounded-2xl shadow-md p-4 text-2xl font-bold text-blue-500 my-5">
                   Priority
                 </h4>
@@ -379,7 +378,7 @@ function Request() {
                     Low
                   </label>
                 </div>
-              </div>
+              </div> */}
 
               <div className="grid grid-cols-2 gap-10">
                 <div>
