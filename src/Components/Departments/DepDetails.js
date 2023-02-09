@@ -42,11 +42,23 @@ function DepDetails() {
             <h4 className="text-blue-500 text-2xl mr-4">Company:</h4>{" "}
             <div className="pt-2"> {requestData.companyName} </div>
           </div>
-          <div className="flex justify-start p-5">
+          <div
+            className={`${
+              requestData.contact_person_name
+                ? "flex justify-start p-5"
+                : "hidden"
+            }`}
+          >
             <h4 className="text-blue-500 text-2xl mr-4">Contact Person:</h4>{" "}
             <div className="pt-2">{requestData.contact_person_name} </div>
           </div>
-          <div className="flex justify-start p-5">
+          <div
+            className={`${
+              requestData.contact_person_phone
+                ? "flex justify-start p-5"
+                : "hidden"
+            }`}
+          >
             <h4 className="text-blue-500 text-2xl mr-4">Contact Info:</h4>{" "}
             <div className="pt-2">{requestData.contact_person_phone} </div>
           </div>
@@ -114,6 +126,14 @@ function DepDetails() {
             <h4 className="text-blue-500 text-2xl mr-4">Priority:</h4>
             <div className="pt-2">{requestData.priority}</div>
           </div> */}
+          <div
+            className={`${
+              requestData.escalated_reason ? "flex justify-start p-5" : "hidden"
+            }`}
+          >
+            <h4 className="text-blue-500 text-2xl mr-4">Escalated Reason:</h4>
+            <div className="pt-2">{requestData.escalated_reason}</div>
+          </div>
         </div>
       </div>
     </>

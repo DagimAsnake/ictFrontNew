@@ -116,6 +116,11 @@ function Declined() {
                         Assign To
                       </div>
                     </Link>
+                    <Link to={`/superadmin/${task._id}/decline`} className="">
+                      <div className="text-red-500 rounded-lg hover:bg-red-400 mb-6 px-5 hover:text-white  p-2 text-lg font-bold cursor-pointer tracking-wider border m-4">
+                        Decline
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>

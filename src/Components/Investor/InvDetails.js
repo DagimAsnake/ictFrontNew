@@ -116,6 +116,14 @@ function InvDetails() {
             <h4 className="text-blue-500 text-2xl mr-4">Priority:</h4>
             <div className="pt-2">{requestData.priority}</div>
           </div> */}
+          <div
+            className={`${
+              requestData.cancled_reason ? "flex justify-start p-5" : "hidden"
+            }`}
+          >
+            <h4 className="text-blue-500 text-2xl mr-4">Declined Reason:</h4>
+            <div className="pt-2">{requestData.cancled_reason}</div>
+          </div>
         </div>
       </div>
     </>

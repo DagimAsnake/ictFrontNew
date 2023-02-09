@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import DepAuthContext from "../Store/Dep-authContext";
 
@@ -7,9 +7,31 @@ function Sidebar() {
 
   const depAuthCtx = useContext(DepAuthContext);
 
+  const [depName, setDepName] = useState("");
+
   const logoutHandler = () => {
     depAuthCtx.logout();
   };
+
+  useEffect(() => {
+    const datafetch = async () => {
+      const response = await fetch(
+        "http://localhost:8080/auth/department/verifyToken",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + depAuthCtx.token,
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      setDepName(data.payload.name);
+    };
+    datafetch();
+  }, [depAuthCtx]);
 
   return (
     <>
@@ -117,7 +139,10 @@ function Sidebar() {
               Escalated
             </div>
           </Link>
-          <Link to="/department/reports">
+          <Link
+            to="/department/reports"
+            className={`${depName === "investor" ? "" : "hidden"}`}
+          >
             <div
               className={
                 pathname === "/department/reports"

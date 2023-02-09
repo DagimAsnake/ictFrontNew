@@ -26,6 +26,7 @@ import EmpDetails from "./Components/Employee/EmpDetails";
 import EscalateTask from "./Components/Employee/EscalateTask";
 import Profile from "./Components/Employee/Profile";
 import DeclineReason from "./Components/Employee/DeclineReason";
+import RequestInt from "./Components/Employee/RequestInt";
 import LayoutInv from "./Components/Investor/LayoutInv";
 import InvDashboard from "./Components/Investor/InvDashboard";
 import Request from "./Components/Investor/Request";
@@ -34,6 +35,7 @@ import Completed from "./Components/Investor/Completed";
 import Report from "./Components/Investor/Report";
 import InvDetails from "./Components/Investor/InvDetails";
 import CompRequest from "./Components/Investor/CompRequest";
+import DecRequest from "./Components/Investor/DecRequest";
 import LayoutSup from "./Components/SuperAdmin/LayoutSup";
 import Department from "./Components/SuperAdmin/Department";
 import Investor from "./Components/SuperAdmin/Investor";
@@ -64,6 +66,7 @@ import Test from "./Components/SuperAdmin/Test";
 import DetailTest from "./Components/SuperAdmin/DetailTest";
 import EditTest from "./Components/SuperAdmin/EditTest";
 import DelTest from "./Components/SuperAdmin/DelTest";
+import DecReason from "./Components/SuperAdmin/DecReason";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -117,6 +120,7 @@ function App() {
           <Route path="escalate/:id" element={<EscalateTask />} />
           <Route path="profile" element={<Profile />} />
           <Route path="decreason/:id" element={<DeclineReason />} />
+          <Route path="request" element={<RequestInt />} />
         </Route>
         <Route
           path="/investor/"
@@ -134,6 +138,7 @@ function App() {
           <Route path="completed" element={<Completed />} />
           <Route path="report" element={<Report />} />
           <Route path=":id" element={<CompRequest />} />
+          <Route path="decline" element={<DecRequest />} />
         </Route>
         <Route
           path="/superadmin/"
@@ -174,6 +179,7 @@ function App() {
           <Route path="test/details/:testid" element={<DetailTest />} />
           <Route path="test/edit/:testid" element={<EditTest />} />
           <Route path="test/delete/:testid" element={<DelTest />} />
+          <Route path=":id/decline" element={<DecReason />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

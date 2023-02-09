@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import InvAuthContext from "../Store/Inv-authContext";
 
@@ -43,43 +43,27 @@ function Report() {
 
   const [challenge, setChallenge] = useState("");
 
-  // const report = [
-  //   {
-  // companyName: compName,
-  // month: month,
-  // const total_number_of_workers = {
-  //   male: totalMale,
-  //   female: totalFemale,
-  //   expected: totalExp,
-  //   total: totalTotal,
-  // };
-  // const number_of_workers_hired = {
-  //   male: hiredMale,
-  //   female: hiredFemale,
-  //   expected: hiredExp,
-  //   total: hiredTotal,
-  // };
-  // const number_of_workers_resigned = {
-  //   male: firedMale,
-  //   female: firedFemale,
-  //   expected: firedExp,
-  //   total: firedTotal,
-  // };
-  // average_worker_per_month: avgWorker,
-  // turn_over_rate: turnOver,
-  // job_creation: jobCre,
-  // cumulative_new_jobs_created: creJobYr,
-  // planned_monthly_report: planExport,
-  // amount_of_export: amountExport,
-  // monthly_import_substitute: monthlyImport,
-  // amount_import_substitute: amountImport,
-  // certificate_type: cerType,
-  // number_of_trainee: numTrainee,
-  // duration_of_training: durTraining,
-  // challenges: challenge,
   const departmentName = "investor";
-  //   },
-  // ];
+
+  useEffect(() => {
+    const datafetch = async () => {
+      const response = await fetch(
+        "http://localhost:8080/auth/investor/verifyToken",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + invAuthCtx.token,
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      setCompName(data.payload.name);
+    };
+    datafetch();
+  }, [invAuthCtx]);
 
   const submitHandler = (event) => {
     event.preventDefault();
