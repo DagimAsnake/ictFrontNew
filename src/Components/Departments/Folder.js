@@ -1,13 +1,13 @@
 import React from "react";
-import { Page, Text, Document, Image } from "@react-pdf/renderer";
+import { Page, Text, Document, Image, StyleSheet } from "@react-pdf/renderer";
 // import kena from "../../assets/kena.jpg";
 
-// const styles = StyleSheet.create({
-//   image: {
-//     width: 20,
-//     height: 20,
-//   },
-// });
+const styles = StyleSheet.create({
+  image: {
+    width: 10,
+    height: 20,
+  },
+});
 
 function ViewReport({ data }) {
   console.log(data);
@@ -52,7 +52,7 @@ function ViewReport({ data }) {
           <Image
             src={"http://localhost:8080/" + data.additional_file}
             // src={kena}
-            // style={styles.image}
+            style={styles.image}
           />
         </Page>
       </Document>

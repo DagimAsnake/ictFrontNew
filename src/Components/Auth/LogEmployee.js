@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import EmpAuthContext from "../Store/Emp-authContext";
 
 function LogEmployee() {
@@ -119,6 +119,10 @@ function LogEmployee() {
 
                 <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                   <button>Log in</button>
+                </div>
+
+                <div>
+                  <Link to="/empoyee/forgetpassword">forget password?</Link>
                 </div>
               </form>
             </div>

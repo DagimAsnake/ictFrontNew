@@ -20,6 +20,7 @@ import ViewReport from "./Components/Departments/ViewReport";
 import Folder from "./Components/Departments/Folder";
 import Download from "./Components/Departments/Download";
 import DeleteEmp from "./Components/Departments/DeleteEmp";
+import ForgetPassword from "./Components/Departments/ForgetPassword";
 import LayoutEmp from "./Components/Employee/LayoutEmp";
 import Tasks from "./Components/Employee/Tasks";
 import EmpDetails from "./Components/Employee/EmpDetails";
@@ -27,6 +28,8 @@ import EscalateTask from "./Components/Employee/EscalateTask";
 import Profile from "./Components/Employee/Profile";
 import DeclineReason from "./Components/Employee/DeclineReason";
 import RequestInt from "./Components/Employee/RequestInt";
+import ForgetPasswordUser from "./Components/Employee/ForgetPasswordUser";
+import ChangePasswordUser from "./Components/Employee/ChangePasswordUser";
 import LayoutInv from "./Components/Investor/LayoutInv";
 import InvDashboard from "./Components/Investor/InvDashboard";
 import Request from "./Components/Investor/Request";
@@ -106,6 +109,12 @@ function App() {
           <Route path="viewreport/download/:name" element={<Folder />} />
           <Route path="viewreport/download" element={<Download />} />
         </Route>
+        <Route>
+          <Route
+            path="/department/forgetpassword"
+            element={<ForgetPassword />}
+          />
+        </Route>
         <Route
           path="/employee/"
           element={
@@ -121,6 +130,16 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="decreason/:id" element={<DeclineReason />} />
           <Route path="request" element={<RequestInt />} />
+        </Route>
+        <Route>
+          <Route
+            path="/empoyee/forgetpassword"
+            element={<ForgetPasswordUser />}
+          />
+          <Route
+            path="/auth/passwordreset/:userId/:token"
+            element={<ChangePasswordUser />}
+          />
         </Route>
         <Route
           path="/investor/"

@@ -2,8 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import DepAuthContext from "../Store/Dep-authContext";
 import { useParams } from "react-router-dom";
 import Download from "./Download";
-import { saveAs } from "file-saver";
-import kena from "../../assets/kena.jpg";
 
 function ViewReport() {
   const { name } = useParams();
@@ -12,6 +10,29 @@ function ViewReport() {
 
   const [requestData, setRequestData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const download = (e) => {
+    e.preventDefault();
+    // console.log(e.target.href);
+    console.log(e.target.name);
+    fetch(e.target.href, {
+      method: "GET",
+      headers: {},
+    })
+      .then((response) => {
+        response.arrayBuffer().then(function (buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `${e.target.name}`); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -31,10 +52,6 @@ function ViewReport() {
     };
     fetchEmployee();
   }, [depAuthCtx, name]);
-
-  // const downloading = () => {
-  //   saveAs(``, "image.jpg");
-  // };
 
   return (
     <>
@@ -65,39 +82,34 @@ function ViewReport() {
                           key={task._id}
                         >
                           <p className="">{task.month}</p>
-                          {/* <Link
-                            to={`/superadmin/viewreport/download`}
-                            className="text-blue-500"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke-width="1.5"
-                              stroke="currentColor"
-                              class="w-8 h-8  inline-block mr-1"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
-                              />
-                            </svg> */}
+
                           <Download data={task} />
-                          {/* </Link> */}
-                          <img
-                            className="w-[65px] h-[65px] mb-[25px]"
-                            src={
-                              "http://localhost:8080/" + task.additional_file
-                            }
-                            alt="additional file"
-                            onClick={() =>
-                              saveAs(
-                                `http://localhost:8080/ + ${task.additional_file}`,
-                                "image.jpg"
-                              )
-                            }
-                          />
+
+                          <a
+                            href={`http://localhost:8080/user/report/${task.additional_file}`}
+                            download
+                            onClick={(e) => download(e)}
+                          >
+                            <img
+                              className="w-[65px] h-[65px] mb-[25px]"
+                              src={
+                                "http://localhost:8080/" + task.additional_file
+                              }
+                              alt="additional file"
+                            />
+                          </a>
+
+                          {/* <Link
+                            to={`http://localhost:8080/${task.additional_file}`}
+                          >
+                            <img
+                              className="w-[65px] h-[65px] mb-[25px]"
+                              src={
+                                "http://localhost:8080/" + task.additional_file
+                              }
+                              alt="additional file"
+                            />
+                          </Link> */}
                         </div>
                       </div>
                     );

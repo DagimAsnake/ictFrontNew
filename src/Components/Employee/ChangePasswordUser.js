@@ -1,26 +1,25 @@
-import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import DepAuthContext from "../Store/Dep-authContext";
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-function LogDepartment() {
-  const depAuthCtx = useContext(DepAuthContext);
-
+function ChangePasswordUser() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const { userId, token } = useParams();
+
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const loginRequest = async () => {
       const response = await fetch(
-        "http://localhost:8080/auth/department/login",
+        `http://localhost:8080/auth/passwordreset/${userId}/${token}`,
         {
           method: "POST",
           body: JSON.stringify({
-            title: name,
-            password: password,
+            password: newPassword,
+            confirm_password: confirmPassword,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -35,24 +34,18 @@ function LogDepartment() {
       const data = await response.json();
       console.log(data);
 
-      const remainingMilliseconds = 60 * 60 * 1000;
-      const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
-
-      depAuthCtx.login(data.token, expiryDate.toISOString());
-
-      if (data.msg === "Logged In Successfully") {
-        navigate("/department/requests");
+      if (data.msg === "Password Changed Successfully") {
+        navigate("/employee/profile");
       }
     };
 
     loginRequest();
   };
-
   return (
     <>
       <div className="bg-neutral-50 h-screen">
         <div className="text-3xl text-center text-blue-500 font-bold">
-          Log in AS Department
+          Change Password
         </div>
         <div className="m-32 mx-96">
           <div className="grid grid-cols-3">
@@ -60,7 +53,7 @@ function LogDepartment() {
             <div className="w-full bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
               <form onSubmit={submitHandler}>
                 <div className="text-xl font-bold text-blue-500 my-3">
-                  <h4 className="mb-2">Title</h4>
+                  <h4 className="mb-2">New Password</h4>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <svg
@@ -79,9 +72,9 @@ function LogDepartment() {
                       </svg>
                     </div>
                     <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Department Name"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="Email"
                       type="text"
                       className="w-full pl-14 bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                     />
@@ -89,7 +82,7 @@ function LogDepartment() {
                 </div>
 
                 <div className="text-xl font-bold text-blue-500 my-3">
-                  <h4 className="mb-2">Password</h4>
+                  <h4 className="mb-2">Confirm Password</h4>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <svg
@@ -103,26 +96,22 @@ function LogDepartment() {
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
                         />
                       </svg>
                     </div>
                     <input
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Password"
-                      type="password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Email"
+                      type="text"
                       className="w-full pl-14 bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                     />
                   </div>
                 </div>
 
                 <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                  <button>Log in</button>
-                </div>
-
-                <div>
-                  <Link to="/department/forgetpassword">forget password?</Link>
+                  <button>Submit</button>
                 </div>
               </form>
             </div>
@@ -133,4 +122,4 @@ function LogDepartment() {
   );
 }
 
-export default LogDepartment;
+export default ChangePasswordUser;
