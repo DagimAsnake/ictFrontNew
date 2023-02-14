@@ -114,7 +114,15 @@ function SupDetails() {
           </div>
           <div className="flex justify-start p-5">
             <h4 className="text-blue-500 text-2xl mr-4">Priority:</h4>
-            <div className="pt-2">{requestData.priority}</div>
+            <div className="p-2 text-red-500 font-semibold">
+              {requestData.priority == 1 && "HIGH"}
+            </div>
+            <div className="p-2 text-blue-500 font-semibold">
+              {requestData.priority == 2 && "MEDIUM"}
+            </div>
+            <div className="text-green-500 font-semibold p-2">
+              {requestData.priority == 3 && "LOW"}
+            </div>
           </div>
           <div
             className={`${

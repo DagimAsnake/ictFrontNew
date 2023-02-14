@@ -22,6 +22,7 @@ function Escalated() {
       if (!response.ok) {
         console.log("Something went wrong");
       }
+
       const data = await response.json();
       console.log(data);
       setRequestData(data.msg);
@@ -66,11 +67,20 @@ function Escalated() {
                       </div>
                     </div>
 
-                    <div className="flex justify-start p-5">
-                      <h4 className="text-blue-500 text-2xl mr-4">
-                        Escalated from:
-                      </h4>
-                      <h4 className="pt-2 text-lg ">Employee Name</h4>
+                    <div className="grid grid-cols-2">
+                      <div className="flex justify-start p-5">
+                        <h4 className="text-blue-500 text-2xl mr-4">
+                          Escalated from:
+                        </h4>
+                        <h4 className="pt-2 text-lg ">
+                          {task.assignedTo.firstName} {task.assignedTo.lastName}
+                        </h4>
+                      </div>
+
+                      <div className="flex justify-start p-5">
+                        <h4 className="text-4xl">#</h4>
+                        <h4 className="pt-2 text-lg ">{task.ticketNumber}</h4>
+                      </div>
                     </div>
                   </div>
 

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./Star.css";
 import DepAuthContext from "../Store/Dep-authContext";
 import { useParams } from "react-router-dom";
-import AsEmpTo from "./AsEmpTo";
 
 function Assign() {
   const { taskid } = useParams();
@@ -13,7 +12,7 @@ function Assign() {
   const [requestEmployee, setRequestEmployee] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [priority, setPriority] = useState("");
+  const [priority, setPriority] = useState(1);
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -30,13 +29,32 @@ function Assign() {
       console.log(taskid);
     };
     fetchEmployee();
-  }, [depAuthCtx, taskid, priority]);
+  }, [depAuthCtx, taskid]);
 
-  const assignHandler = () => {
-    <AsEmpTo priority={priority} />;
+  // useEffect(() => {
+  const assignHandler = async () => {
+    const response = await fetch(
+      `http://localhost:8080/task/${taskid}/priority`,
+      {
+        method: "post",
+        body: JSON.stringify({
+          priority: priority,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + depAuthCtx.token,
+        },
+      }
+    );
+    if (!response.ok) {
+      console.log("Something went wrong");
+    }
+    const data = await response.json();
+    console.log(data);
+    console.log(priority);
   };
-
-  console.log(priority);
+  // assignHandler();
+  // }, [priority, depAuthCtx, taskid]);
 
   return (
     <>
@@ -57,25 +75,13 @@ function Assign() {
                   <label for="2" className="block text-white">
                     Task Priority
                   </label>
-                  <select className="ml-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
-                    <option
-                      value="High"
-                      onChange={(e) => setPriority(e.target.value)}
-                    >
-                      High
-                    </option>
-                    <option
-                      value="Medium"
-                      onChange={(e) => setPriority(e.target.value)}
-                    >
-                      Medium
-                    </option>
-                    <option
-                      value="Low"
-                      onChange={(e) => setPriority(e.target.value)}
-                    >
-                      Low
-                    </option>
+                  <select
+                    className="ml-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
+                    onChange={(e) => setPriority(e.target.value)}
+                  >
+                    <option value={1}>High</option>
+                    <option value={2}>Medium</option>
+                    <option value={3}>Low</option>
                   </select>
                 </div>
               </div>

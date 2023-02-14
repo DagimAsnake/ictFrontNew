@@ -48,7 +48,10 @@ function Employee() {
                         <p className="" key={emp._id}>
                           {emp.firstName} {emp.lastName}
                         </p>
-                        <p className="starability-result" data-rating={3}></p>
+                        <p
+                          className="starability-result"
+                          data-rating={emp.rating}
+                        ></p>
                         <p className="flex justify-between">
                           <Link
                             to={`/department/employee/${emp._id}`}

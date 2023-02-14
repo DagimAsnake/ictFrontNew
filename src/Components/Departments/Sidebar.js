@@ -141,7 +141,7 @@ function Sidebar() {
           </Link>
           <Link
             to="/department/reports"
-            className={`${depName === "investor" ? "" : "hidden"}`}
+            className={`${depName === "Investor" ? "" : "hidden"}`}
           >
             <div
               className={

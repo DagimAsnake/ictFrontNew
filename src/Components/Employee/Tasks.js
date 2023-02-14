@@ -43,7 +43,7 @@ function Tasks() {
                   className="w-full bg-white border border-gray-200 rounded-lg rounded-t-2xl shadow-md mb-10"
                   key={task._id}
                 >
-                  <div className="grid grid-cols-2">
+                  <div className="grid grid-cols-3">
                     <div className="flex justify-start p-5">
                       <h4 className="text-blue-500 text-2xl mr-4">Company:</h4>{" "}
                       <div className="pt-2 text-lg"> {task.companyName} </div>
@@ -53,6 +53,11 @@ function Tasks() {
                         Service Category:
                       </h4>
                       <div className="pt-2 text-lg">{task.taskType}</div>
+                    </div>
+
+                    <div className="flex justify-start p-5">
+                      <h4 className="text-4xl">#</h4>
+                      <h4 className="pt-2 text-lg ">{task.ticketNumber}</h4>
                     </div>
                   </div>
 

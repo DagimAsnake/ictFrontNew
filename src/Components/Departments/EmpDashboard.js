@@ -41,7 +41,10 @@ function EmpDashboard() {
                     <p className="" key={emp.id}>
                       {emp.firstName} {emp.lastName}
                     </p>
-                    <p className="starability-result" data-rating={3}></p>
+                    <p
+                      className="starability-result"
+                      data-rating={emp.rating}
+                    ></p>
                   </div>
                 );
               })}

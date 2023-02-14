@@ -3,9 +3,9 @@ import { Page, Text, Document, Image, StyleSheet } from "@react-pdf/renderer";
 // import kena from "../../assets/kena.jpg";
 
 const styles = StyleSheet.create({
-  image: {
-    width: 10,
-    height: 20,
+  mint: {
+    width: 50,
+    height: 200,
   },
 });
 
@@ -52,7 +52,7 @@ function ViewReport({ data }) {
           <Image
             src={"http://localhost:8080/" + data.additional_file}
             // src={kena}
-            style={styles.image}
+            style={styles.mint}
           />
         </Page>
       </Document>

@@ -39,6 +39,7 @@ import Report from "./Components/Investor/Report";
 import InvDetails from "./Components/Investor/InvDetails";
 import CompRequest from "./Components/Investor/CompRequest";
 import DecRequest from "./Components/Investor/DecRequest";
+import Rating from "./Components/Investor/Rating";
 import LayoutSup from "./Components/SuperAdmin/LayoutSup";
 import Department from "./Components/SuperAdmin/Department";
 import Investor from "./Components/SuperAdmin/Investor";
@@ -70,6 +71,7 @@ import DetailTest from "./Components/SuperAdmin/DetailTest";
 import EditTest from "./Components/SuperAdmin/EditTest";
 import DelTest from "./Components/SuperAdmin/DelTest";
 import DecReason from "./Components/SuperAdmin/DecReason";
+import DashboardSup from "./Components/SuperAdmin/DashboardSup";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -158,6 +160,7 @@ function App() {
           <Route path="report" element={<Report />} />
           <Route path=":id" element={<CompRequest />} />
           <Route path="decline" element={<DecRequest />} />
+          <Route path="rating/:id" element={<Rating />} />
         </Route>
         <Route
           path="/superadmin/"
@@ -199,6 +202,7 @@ function App() {
           <Route path="test/edit/:testid" element={<EditTest />} />
           <Route path="test/delete/:testid" element={<DelTest />} />
           <Route path=":id/decline" element={<DecReason />} />
+          <Route path="dashboard" element={<DashboardSup />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

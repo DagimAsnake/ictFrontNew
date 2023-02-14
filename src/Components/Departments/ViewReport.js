@@ -13,9 +13,9 @@ function ViewReport() {
 
   const download = (e) => {
     e.preventDefault();
-    // console.log(e.target.href);
-    console.log(e.target.name);
-    fetch(e.target.href, {
+    console.log(e.target.src);
+    // console.log(e.target.name);
+    fetch(e.target.src, {
       method: "GET",
       headers: {},
     })
@@ -24,7 +24,7 @@ function ViewReport() {
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", `${e.target.name}`); //or any other extension
+          link.setAttribute("download", `image.jpg`); //or any other extension
           document.body.appendChild(link);
           link.click();
         });
@@ -85,19 +85,21 @@ function ViewReport() {
 
                           <Download data={task} />
 
-                          <a
-                            href={`http://localhost:8080/user/report/${task.additional_file}`}
+                          {/* <a
+                            href={`http://localhost:8080/${task.additional_file}`}
                             download
                             onClick={(e) => download(e)}
-                          >
-                            <img
-                              className="w-[65px] h-[65px] mb-[25px]"
-                              src={
-                                "http://localhost:8080/" + task.additional_file
-                              }
-                              alt="additional file"
-                            />
-                          </a>
+                          > */}
+                          <img
+                            className="w-[65px] h-[65px] mb-[25px]"
+                            src={
+                              "http://localhost:8080/" + task.additional_file
+                            }
+                            alt="additional file"
+                            download
+                            onClick={(e) => download(e)}
+                          />
+                          {/* </a> */}
 
                           {/* <Link
                             to={`http://localhost:8080/${task.additional_file}`}

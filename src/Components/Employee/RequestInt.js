@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EmpAuthContext from "../Store/Emp-authContext";
 
@@ -48,6 +48,20 @@ function RequestInt() {
 
     addrequest();
   };
+
+  const [requestEmployee, setRequestEmployee] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      const response = await fetch("http://localhost:8080/user/department");
+      const data = await response.json();
+      console.log(data);
+      setRequestEmployee(data.msg);
+      setIsLoading(false);
+    };
+    fetchEmployee();
+  }, []);
 
   return (
     <>
@@ -103,114 +117,67 @@ function RequestInt() {
                 </div>
               </div>
 
-              <div className="w-1/2 bg-white border border-gray-200 rounded-2xl shadow-md p-4 text-2xl font-bold text-blue-500 my-5">
-                Department Service Category
-              </div>
-              <div className="grid grid-cols-3 gap-10">
-                <div className="flex">
-                  <div className="flex items-center text-2xl">
-                    <input
-                      value="ict"
-                      onChange={(e) => {
-                        setCategory(e.target.value);
-                      }}
-                      id="3"
-                      type="radio"
-                      name="department"
-                      className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
-                    />
-                    <label
-                      for="3"
-                      className="block ml-2 font-bold text-gray-900"
-                    >
-                      Ict
-                    </label>
+              {isLoading && <h3>Loading......</h3>}
 
-                    <select className="ml-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
-                      <option value="Internet Service" selected>
-                        Internet Service
-                      </option>
-                      <option value="VOI (Voice Over Internet)">
-                        VOI (Voice Over Internet)
-                      </option>
-                      <option value="Web Hosting">Web Hosting</option>
-                      <option value="Video Conference">Video Conference</option>
-                      <option value="Enterprise Email System">
-                        Enterprise Email System
-                      </option>
-                      <option value="Collocation">Collocation</option>
-                      <option value="ICT Support">ICT Support</option>
-                    </select>
+              {!isLoading && requestEmployee.length <= 0 && (
+                <h3 className="mt-5">There are no Departments.</h3>
+              )}
+
+              {!isLoading && requestEmployee.length > 0 && (
+                <>
+                  <div className="w-1/2 bg-white border border-gray-200 rounded-2xl shadow-md p-4 text-2xl font-bold text-blue-500 my-5">
+                    Department Service Category
                   </div>
-                </div>
-                <div className="flex">
-                  <div className="flex items-center text-2xl">
-                    <input
-                      value="facility"
-                      onChange={(e) => {
-                        setCategory(e.target.value);
-                      }}
-                      id="2"
-                      type="radio"
-                      name="department"
-                      className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
-                    />
-                    <label
-                      for="2"
-                      className="block ml-2 font-bold text-gray-900"
-                    >
-                      Facility
-                    </label>
-                    <select className="ml-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
-                      <option value="General Maintenance" selected>
-                        General Maintenance
-                      </option>
-                      <option value="Sewer">Sewer</option>
-                      <option value="Electricity">Electricity</option>
-                      <option value="Water">Water</option>
-                    </select>
+
+                  <div className="grid grid-cols-4 gap-10">
+                    {!isLoading &&
+                      requestEmployee?.map((dep) => {
+                        return (
+                          <>
+                            <div className="" key={dep.id}>
+                              <div className="flex items-center text-2xl">
+                                <input
+                                  value={dep?.title}
+                                  onChange={(e) => {
+                                    setCategory(e.target.value);
+                                  }}
+                                  id="3"
+                                  type="radio"
+                                  name="department"
+                                  className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
+                                />
+                                <label
+                                  for="3"
+                                  className="block ml-2 font-bold text-gray-900"
+                                >
+                                  {dep.title}
+                                </label>
+                              </div>
+                              <div>
+                                <select className="ml-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
+                                  {dep.services && (
+                                    <>
+                                      <option value="Internet Service" selected>
+                                        {dep.title}
+                                      </option>
+                                    </>
+                                  )}
+                                  {dep.services?.map((ser) => {
+                                    return (
+                                      <option value="Internet Service" selected>
+                                        {ser.title}
+                                      </option>
+                                    );
+                                  })}
+                                </select>
+                              </div>
+                            </div>
+                          </>
+                        );
+                      })}
                   </div>
-                </div>
-                <div className="">
-                  <div className="flex items-center text-2xl">
-                    <input
-                      value="investor"
-                      onChange={(e) => {
-                        setCategory(e.target.value);
-                      }}
-                      id="1"
-                      type="radio"
-                      name="department"
-                      className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
-                    />
-                    <label
-                      for="1"
-                      className="block ml-2 font-bold text-gray-900"
-                    >
-                      Investor follow up & Support
-                    </label>
-                  </div>
-                  <div>
-                    <select className="ml-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
-                      <option value="Make Promotion" selected>
-                        Make Promotion
-                      </option>
-                      <option value="Follow Up & Support Investor">
-                        Follow Up & Support Investor
-                      </option>
-                      <option value="Collect Plan Report">
-                        Collect Plan Report
-                      </option>
-                      <option value="Compel Plan & Report">
-                        Compel Plan & Report
-                      </option>
-                      <option value="Organize Social Responsibilty Activities">
-                        Organize Social Responsibilty Activities
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+                </>
+              )}
 
               <div className="w-1/2 bg-white border border-gray-200 rounded-lg rounded-t-2xl shadow-md p-4 text-2xl font-bold text-blue-500 my-5">
                 Description of Requested Work

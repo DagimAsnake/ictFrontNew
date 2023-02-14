@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EmpAuthContext from "../Store/Emp-authContext";
 
@@ -45,6 +45,21 @@ function CreateService() {
     addrequest();
   };
 
+  const [requestEmployee, setRequestEmployee] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      const response = await fetch("http://localhost:8080/user/department");
+      const data = await response.json();
+      console.log(data);
+      setRequestEmployee(data.msg);
+      setIsLoading(false);
+      setDepartment(data.msg[0].title);
+    };
+    fetchEmployee();
+  }, []);
+
   return (
     <>
       <div className="bg-neutral-50">
@@ -84,79 +99,50 @@ function CreateService() {
                 </div>
               </div>
 
-              <div className="text-xl font-bold text-blue-500 my-3">
-                <h4 className="mb-2">Department</h4>
+              {isLoading && <h3>Loading......</h3>}
 
-                <div className="grid grid-cols-4">
-                  <div className="flex items-center text-2xl">
-                    <input
-                      value="ict"
-                      onChange={(e) => setDepartment(e.target.value)}
-                      id="4"
-                      type="radio"
-                      name="priority"
-                      className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
-                    />
-                    <label
-                      for="4"
-                      className="block ml-2 font-bold text-gray-900"
-                    >
-                      Ict
-                    </label>
-                  </div>
+              {!isLoading && requestEmployee.length <= 0 && (
+                <h3 className="mt-5">There are no Departments.</h3>
+              )}
 
-                  <div className="flex items-center text-2xl">
-                    <input
-                      value="facility"
-                      onChange={(e) => setDepartment(e.target.value)}
-                      id="5"
-                      type="radio"
-                      name="priority"
-                      className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
-                    />
-                    <label
-                      for="5"
-                      className="block ml-2 font-bold text-gray-900"
-                    >
-                      Facility
-                    </label>
-                  </div>
+              {!isLoading && requestEmployee.length > 0 && (
+                <>
+                  <div className="text-xl font-bold text-blue-500 my-3">
+                    <h4 className="mb-2">Department</h4>
 
-                  <div className="flex items-center text-2xl">
-                    <input
-                      value="investor"
-                      onChange={(e) => setDepartment(e.target.value)}
-                      id="6"
-                      type="radio"
-                      name="priority"
-                      className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
-                    />
-                    <label
-                      for="6"
-                      className="block ml-2 font-bold text-gray-900"
-                    >
-                      Investor
-                    </label>
+                    <div className="grid grid-cols-4">
+                      {!isLoading &&
+                        requestEmployee?.map((dep) => {
+                          return (
+                            <>
+                              <div
+                                className="flex items-center text-2xl"
+                                key={dep.id}
+                              >
+                                <input
+                                  value={dep?.title}
+                                  onChange={(e) =>
+                                    setDepartment(e.target.value)
+                                  }
+                                  id="4"
+                                  type="radio"
+                                  name="priority"
+                                  className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
+                                />
+                                <label
+                                  for="4"
+                                  className="block ml-2 font-bold text-gray-900"
+                                >
+                                  {dep.title}
+                                </label>
+                              </div>
+                            </>
+                          );
+                        })}
+                    </div>
                   </div>
-
-                  <div className="flex items-center text-2xl">
-                    <input
-                      value="general"
-                      onChange={(e) => setDepartment(e.target.value)}
-                      id="4"
-                      type="radio"
-                      name="priority"
-                      className="w-4 h-4 focus:ring-2 focus:ring-blue-300"
-                    />
-                    <label
-                      for="4"
-                      className="block ml-2 font-bold text-gray-900"
-                    >
-                      General
-                    </label>
-                  </div>
-                </div>
-              </div>
+                </>
+              )}
 
               <div className="text-xl font-bold text-blue-500 my-3">
                 <h4 className="mb-2">Icon</h4>

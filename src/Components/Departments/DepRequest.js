@@ -56,6 +56,11 @@ function DepRequest() {
                       </h4>
                       <div className="pt-2 text-lg">{task.taskType}</div>
                     </div>
+
+                    <div className="flex justify-start p-5">
+                      <h4 className="text-4xl">#</h4>
+                      <h4 className="pt-2 text-lg ">{task.ticketNumber}</h4>
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-2">
