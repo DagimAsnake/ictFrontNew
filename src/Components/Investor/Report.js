@@ -506,13 +506,20 @@ function Report() {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="">upload file</label>
-            <input
-              type="file"
-              name="file"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
+          <div className="border-x-4 mx-10 border-b-4 rounded-lg">
+            <div className="text-2xl text-blue-500 text-center mx-96 bg-white border border-gray-200 rounded-2xl shadow-md p-5 my-10">
+              Upload Image
+            </div>
+            <div>
+              <div className="rounded-2xl shadow-xl shadow-blue-300 p-5 m-9">
+                <input
+                  name="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  type="file"
+                  className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="w-44 m-10 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
