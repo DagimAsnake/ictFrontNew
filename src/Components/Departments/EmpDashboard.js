@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import "./Star.css";
+import ReactStars from "react-rating-stars-component";
 import DepAuthContext from "../Store/Dep-authContext";
 
 function EmpDashboard() {
@@ -41,10 +41,12 @@ function EmpDashboard() {
                     <p className="" key={emp.id}>
                       {emp.firstName} {emp.lastName}
                     </p>
-                    <p
-                      className="starability-result"
-                      data-rating={emp.rating}
-                    ></p>
+                    <ReactStars
+                      size={30}
+                      count={5}
+                      isHalf={true}
+                      value={emp.rating}
+                    />
                   </div>
                 );
               })}

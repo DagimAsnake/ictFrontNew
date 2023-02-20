@@ -110,16 +110,12 @@ function MyRequests() {
                           Details
                         </div>
                       </Link>
-                      <Link to={`/investor/${task._id}`}>
+
+                      <Link to={`/investor/rating/${task._id}`}>
                         <div className="text-blue-500 rounded-lg hover:bg-blue-400 mb-6 px-5 hover:text-white  p-2 text-lg font-bold cursor-pointer tracking-wider border m-4">
                           Completed
                         </div>
                       </Link>
-                      {/* <Link to={`/investor/rating/${task._id}`}>
-                        <div className="text-blue-500 rounded-lg hover:bg-blue-400 mb-6 px-5 hover:text-white  p-2 text-lg font-bold cursor-pointer tracking-wider border m-4">
-                          Completed
-                        </div>
-                      </Link> */}
                     </div>
                   </div>
                 </div>

@@ -1,3 +1,6 @@
+import React, { useEffect, useState, useContext } from "react";
+import EmpAuthContext from "../Store/Emp-authContext";
+
 import {
   BarChart,
   Bar,
@@ -24,6 +27,27 @@ const data = [
 ];
 
 export default function ChartSup() {
+  const empAuthCtx = useContext(EmpAuthContext);
+
+  // const [requestEmployee, setRequestEmployee] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      const response = await fetch(
+        "http://localhost:8080/task/getannualrequest",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + empAuthCtx.token,
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    };
+    fetchEmployee();
+  }, [empAuthCtx]);
   return (
     <>
       <div className="my-10">

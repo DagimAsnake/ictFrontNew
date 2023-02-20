@@ -167,56 +167,7 @@ function Sidebar() {
               Testimonials
             </div>
           </Link>
-          <Link to="/superadmin/addinvestor">
-            <div
-              className={
-                pathname === "/superadmin/addinvestor"
-                  ? "mb-4 bg-neutral-200"
-                  : "mb-4 hover:bg-neutral-200"
-              }
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-8 h-8 inline-block"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"
-                />
-              </svg>{" "}
-              Add Investor
-            </div>
-          </Link>
-          <Link to="/superadmin/adddepartment">
-            <div
-              className={
-                pathname === "/superadmin/adddepartment"
-                  ? "mb-4 bg-neutral-200"
-                  : "mb-4 hover:bg-neutral-200"
-              }
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-8 h-8 inline-block"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
-                />
-              </svg>{" "}
-              Add Department
-            </div>
-          </Link>
+
           <Link to="/superadmin/decline">
             <div
               className={
@@ -240,81 +191,6 @@ function Sidebar() {
                 ></path>
               </svg>{" "}
               Declined
-            </div>
-          </Link>
-          <Link to="/superadmin/addservice">
-            <div
-              className={
-                pathname === "/superadmin/addservice"
-                  ? "mb-4 bg-neutral-200"
-                  : "mb-4 hover:bg-neutral-200"
-              }
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-8 h-8 inline-block"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15"
-                />
-              </svg>{" "}
-              Add Service
-            </div>
-          </Link>
-          <Link to="/superadmin/addclient">
-            <div
-              className={
-                pathname === "/superadmin/addclient"
-                  ? "mb-4 bg-neutral-200"
-                  : "mb-4 hover:bg-neutral-200"
-              }
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-8 h-8 inline-block"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
-                />
-              </svg>{" "}
-              Add Clients
-            </div>
-          </Link>
-          <Link to="/superadmin/addtest">
-            <div
-              className={
-                pathname === "/superadmin/addtest"
-                  ? "mb-4 bg-neutral-200"
-                  : "mb-4 hover:bg-neutral-200"
-              }
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-8 h-8 inline-block"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"
-                />
-              </svg>{" "}
-              Add Testimonial
             </div>
           </Link>
         </div>

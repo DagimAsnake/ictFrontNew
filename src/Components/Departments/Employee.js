@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import "./Star.css";
+import ReactStars from "react-rating-stars-component";
 import DepAuthContext from "../Store/Dep-authContext";
 
 function Employee() {
@@ -48,10 +48,12 @@ function Employee() {
                         <p className="" key={emp._id}>
                           {emp.firstName} {emp.lastName}
                         </p>
-                        <p
-                          className="starability-result"
-                          data-rating={emp.rating}
-                        ></p>
+                        <ReactStars
+                          size={30}
+                          count={5}
+                          isHalf={true}
+                          value={emp.rating}
+                        />
                         <p className="flex justify-between">
                           <Link
                             to={`/department/employee/${emp._id}`}

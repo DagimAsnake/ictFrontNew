@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import DepAuthContext from "../Store/Dep-authContext";
+
 import {
   BarChart,
   Bar,
@@ -25,6 +27,28 @@ const data = [
 ];
 
 export default function Chart() {
+  const depAuthCtx = useContext(DepAuthContext);
+
+  // const [requestData, setRequestData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const datafetch = async () => {
+      const response = await fetch(
+        "http://localhost:8080/department/getannualrequest",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + depAuthCtx.token,
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    };
+    datafetch();
+  }, [depAuthCtx]);
+
   return (
     <>
       <div className="my-10">
