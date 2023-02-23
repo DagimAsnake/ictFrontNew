@@ -53,6 +53,7 @@ function Employee() {
                           count={5}
                           isHalf={true}
                           value={emp.rating}
+                          edit={false}
                         />
                         <p className="flex justify-between">
                           <Link

@@ -219,7 +219,7 @@ function Sidebar() {
           </Link>
         </div>
         <div className="mt-auto">
-          <div className="mb-4 active:text-white hover:bg-neutral-200">
+          {/* <div className="mb-4 active:text-white hover:bg-neutral-200">
             <svg
               className="w-8 h-8 inline-block"
               fill="none"
@@ -241,7 +241,7 @@ function Sidebar() {
               ></path>
             </svg>{" "}
             Setting
-          </div>
+          </div> */}
           <div className="mb-4 active:text-white hover:bg-neutral-200">
             <button onClick={logoutHandler}>
               <svg

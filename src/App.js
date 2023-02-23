@@ -76,6 +76,7 @@ import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
 import Home from "./Components/Home/Home";
+import NotFound404 from "./Components/NotFound404";
 
 function App() {
   const invAuthCtx = useContext(InvAuthContext);
@@ -208,6 +209,8 @@ function App() {
         <Route path="/loginEmployee" element={<LogEmployee />} />
         <Route path="/loginInvestor" element={<LogInvestor />} />
         <Route path="/loginInvestor" element={<LogInvestor />} />
+
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
     </>
   );

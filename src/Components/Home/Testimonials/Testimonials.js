@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import TestimonialCards from "./TestimonialCards";
-import profile from "./profile.jpg";
 
 function Testimonials() {
   const [data, setData] = useState([]);
@@ -45,7 +44,6 @@ function Testimonials() {
           data.msg.map((d) => (
             <TestimonialCards
               key={d._id}
-              Img={profile}
               description={d.description}
               name={d.author}
               position={d.company}

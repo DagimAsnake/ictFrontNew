@@ -11,26 +11,10 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  { name: "Jan", Request: 1 },
-  { name: "Feb", Request: 3 },
-  { name: "Mar", Request: 2 },
-  { name: "Apr", Request: 9 },
-  { name: "May", Request: 8 },
-  { name: "Jun", Request: 3 },
-  { name: "July", Request: 4 },
-  { name: "Aug", Request: 3 },
-  { name: "Sep", Request: 1 },
-  { name: "Oct", Request: 4 },
-  { name: "Nov", Request: 6 },
-  { name: "Dec", Request: 5 },
-];
-
 export default function Chart() {
   const depAuthCtx = useContext(DepAuthContext);
 
-  // const [requestData, setRequestData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [requestData, setRequestData] = useState([]);
 
   useEffect(() => {
     const datafetch = async () => {
@@ -43,12 +27,36 @@ export default function Chart() {
           },
         }
       );
+      console.log(response);
       const data = await response.json();
       console.log(data);
+      setRequestData(data.msg);
     };
     datafetch();
   }, [depAuthCtx]);
 
+  const data = [
+    {
+      name: "Jan",
+      Request: requestData["01"] ? requestData["01"]?.length : 0,
+    },
+    { name: "Feb", Request: requestData["02"] ? requestData["02"]?.length : 0 },
+    { name: "Mar", Request: requestData["03"] ? requestData["03"]?.length : 0 },
+    { name: "Apr", Request: requestData["04"] ? requestData["04"]?.length : 0 },
+    { name: "May", Request: requestData["05"] ? requestData["05"]?.length : 0 },
+    { name: "Jun", Request: requestData["06"] ? requestData["06"]?.length : 0 },
+    {
+      name: "July",
+      Request: requestData["07"] ? requestData["07"]?.length : 0,
+    },
+    { name: "Aug", Request: requestData["08"] ? requestData["08"]?.length : 0 },
+    { name: "Sep", Request: requestData["09"] ? requestData["09"]?.length : 0 },
+    { name: "Oct", Request: requestData["10"] ? requestData["10"]?.length : 0 },
+    { name: "Nov", Request: requestData["11"] ? requestData["11"]?.length : 0 },
+    { name: "Dec", Request: requestData["12"] ? requestData["12"]?.length : 0 },
+  ];
+
+  // console.log(requestData["01"] ? requestData["01"].length : 0);
   return (
     <>
       <div className="my-10">

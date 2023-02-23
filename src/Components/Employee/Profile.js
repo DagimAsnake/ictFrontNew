@@ -1,5 +1,5 @@
 import React from "react";
-import Kena from "../../assets/kena.jpg";
+import Kena from "../../assets/kena.png";
 import ReactStars from "react-rating-stars-component";
 
 function Profile() {
@@ -22,9 +22,16 @@ function Profile() {
               <div className="text-start ml-5 font-semibold">
                 <div className="text-3xl my-5">Rating</div>
                 <div className="text-3xl my-10">5</div>
-                <ReactStars size={30} count={5} isHalf={true} value={5} />
+                <ReactStars
+                  size={30}
+                  count={5}
+                  isHalf={true}
+                  value={5}
+                  edit={false}
+                />
               </div>
               <div>
+                {/* <a href="https://iradesign.io">Illustrations by IRA Design</a> */}
                 <img
                   src={Kena}
                   alt="Profile"

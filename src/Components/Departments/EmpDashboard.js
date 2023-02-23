@@ -46,6 +46,7 @@ function EmpDashboard() {
                       count={5}
                       isHalf={true}
                       value={emp.rating}
+                      edit={false}
                     />
                   </div>
                 );

@@ -7,9 +7,9 @@ function CardSup() {
         <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
           <div className="flex justify-evenly">
             <div>
-              <p className="font-normal text-gray-700">Total Employees</p>
+              <p className="font-normal text-gray-700">Total Departments</p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                10
+                4
               </h6>
             </div>
 
@@ -66,7 +66,7 @@ function CardSup() {
           <div className="flex justify-evenly">
             <div className="">
               <p className="font-normal text-gray-700">
-                Total Escalated Requests
+                Total Declined Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                 20

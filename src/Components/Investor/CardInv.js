@@ -3,8 +3,8 @@ import React from "react";
 function CardInv() {
   return (
     <>
-      <div className="grid grid-cols-4 gap-20 mx-10">
-        <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
+      <div className="grid grid-cols-4 mx-10">
+        {/* <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
           <div className="flex justify-evenly">
             <div>
               <p className="font-normal text-gray-700">Total Employees</p>
@@ -30,16 +30,14 @@ function CardInv() {
               </svg>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
           <div className="flex justify-evenly">
             <div className="">
-              <p className="font-normal text-gray-700">
-                Total Incoming Requests
-              </p>
+              <p className="font-normal text-gray-700">Total Requests</p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                15
+                21
               </h6>
             </div>
 
@@ -62,7 +60,7 @@ function CardInv() {
           </div>
         </div>
 
-        <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
+        {/* <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
           <div className="flex justify-evenly">
             <div className="">
               <p className="font-normal text-gray-700">
@@ -90,7 +88,7 @@ function CardInv() {
               </svg>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
           <div className="flex justify-evenly">
@@ -99,7 +97,7 @@ function CardInv() {
                 Total Completed Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                21
+                15
               </h6>
             </div>
 

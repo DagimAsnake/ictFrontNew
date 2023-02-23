@@ -9,7 +9,7 @@ function CardDashboard() {
             <div>
               <p className="font-normal text-gray-700">Total Employees</p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                10
+                3
               </h6>
             </div>
 
@@ -39,7 +39,7 @@ function CardDashboard() {
                 Total Incoming Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                15
+                21
               </h6>
             </div>
 
@@ -69,7 +69,7 @@ function CardDashboard() {
                 Total Escalated Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                20
+                09
               </h6>
             </div>
 
@@ -99,7 +99,7 @@ function CardDashboard() {
                 Total Completed Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                21
+                11
               </h6>
             </div>
 
