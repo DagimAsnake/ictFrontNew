@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ForgetPassword() {
+function ForgetPasswordInvestor() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ function ForgetPassword() {
 
     const loginRequest = async () => {
       const response = await fetch(
-        "http://localhost:8080/auth/department/passwordreset",
+        "http://localhost:8080/auth/investor/forgetpassword",
         {
           method: "POST",
           body: JSON.stringify({
@@ -90,4 +90,4 @@ function ForgetPassword() {
   );
 }
 
-export default ForgetPassword;
+export default ForgetPasswordInvestor;

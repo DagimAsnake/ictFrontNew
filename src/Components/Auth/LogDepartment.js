@@ -126,7 +126,12 @@ function LogDepartment() {
                 </div>
 
                 <div>
-                  <Link to="/department/forgetpassword">forget password?</Link>
+                  <Link
+                    to="/department/forgetpassword"
+                    className="text-blue-500"
+                  >
+                    forget password?
+                  </Link>
                 </div>
               </form>
             </div>

@@ -35,7 +35,7 @@ function ChangePasswordUser() {
       console.log(data);
 
       if (data.msg === "Password Changed Successfully") {
-        navigate("/employee/profile");
+        navigate("/loginEmployee");
       }
     };
 

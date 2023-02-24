@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ForgetPassword() {
+function ForgetPasswordUser() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [isLinkSent, setIsLinkSent] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -30,9 +31,7 @@ function ForgetPassword() {
       const data = await response.json();
       console.log(data);
 
-      //   if (data.msg === "Reset Password link is sent Successfully") {
-      //     navigate("/employee/profile");
-      //   }
+      setIsLinkSent(data.msg);
     };
 
     loginRequest();
@@ -70,12 +69,14 @@ function ForgetPassword() {
                     <input
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Email"
+                      placeholder="Enter Your Email"
                       type="text"
                       className="w-full pl-14 bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                     />
                   </div>
                 </div>
+
+                <p className="text-lg text-pink-500">{isLinkSent}</p>
 
                 <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                   <button>Submit</button>
@@ -89,4 +90,4 @@ function ForgetPassword() {
   );
 }
 
-export default ForgetPassword;
+export default ForgetPasswordUser;

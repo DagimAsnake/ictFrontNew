@@ -126,7 +126,9 @@ function LogEmployee() {
                 </div>
 
                 <div>
-                  <Link to="/empoyee/forgetpassword">forget password?</Link>
+                  <Link to="/empoyee/forgetpassword" className="text-blue-500">
+                    forget password?
+                  </Link>
                 </div>
               </form>
             </div>

@@ -21,6 +21,7 @@ import Folder from "./Components/Departments/Folder";
 import Download from "./Components/Departments/Download";
 import DeleteEmp from "./Components/Departments/DeleteEmp";
 import ForgetPassword from "./Components/Departments/ForgetPassword";
+import ChangePassword from "./Components/Departments/ChangePassword";
 import LayoutEmp from "./Components/Employee/LayoutEmp";
 import Tasks from "./Components/Employee/Tasks";
 import EmpDetails from "./Components/Employee/EmpDetails";
@@ -40,6 +41,8 @@ import InvDetails from "./Components/Investor/InvDetails";
 import CompRequest from "./Components/Investor/CompRequest";
 import DecRequest from "./Components/Investor/DecRequest";
 import Rating from "./Components/Investor/Rating";
+import ForgetPasswordInvestor from "./Components/Investor/ForgetPasswordInvestor";
+import ChangePasswordInvestor from "./Components/Investor/ChangePasswordInvestor";
 import LayoutSup from "./Components/SuperAdmin/LayoutSup";
 import Department from "./Components/SuperAdmin/Department";
 import Investor from "./Components/SuperAdmin/Investor";
@@ -117,6 +120,10 @@ function App() {
             path="/department/forgetpassword"
             element={<ForgetPassword />}
           />
+          <Route
+            path="/auth/department/passwordreset/:depId/:token"
+            element={<ChangePassword />}
+          />
         </Route>
         <Route
           path="/employee/"
@@ -163,6 +170,16 @@ function App() {
           <Route path="decline" element={<DecRequest />} />
           <Route path="rating/:id" element={<Rating />} />
         </Route>
+        <Route>
+          <Route
+            path="/investor/forgetpassword"
+            element={<ForgetPasswordInvestor />}
+          />
+          <Route
+            path="/auth/investor/passwordreset/:invId/:token"
+            element={<ChangePassword />}
+          />
+        </Route>
         <Route
           path="/superadmin/"
           element={
@@ -207,7 +224,6 @@ function App() {
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />
-        <Route path="/loginInvestor" element={<LogInvestor />} />
         <Route path="/loginInvestor" element={<LogInvestor />} />
 
         <Route path="*" element={<NotFound404 />} />
