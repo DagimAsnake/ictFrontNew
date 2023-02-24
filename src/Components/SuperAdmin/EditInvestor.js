@@ -15,6 +15,8 @@ function EditInvestor() {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
 
+  const [errMsg, setErrMsg] = useState("");
+
   useEffect(() => {
     const singleFetch = async () => {
       const response = await fetch(
@@ -68,6 +70,8 @@ function EditInvestor() {
       const data = await response.json();
 
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Investor Account Information updated successfully") {
         navigate("/superadmin/investors");
@@ -235,6 +239,8 @@ function EditInvestor() {
                   />
                 </div>
               </div>
+
+              <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                 <button>Update</button>

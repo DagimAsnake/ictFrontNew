@@ -13,6 +13,8 @@ function EditTest() {
   const [description, setDescription] = useState("");
   const [company, setCompany] = useState("");
 
+  const [errMsg, setErrMsg] = useState("");
+
   useEffect(() => {
     const singleFetch = async () => {
       const response = await fetch(
@@ -64,6 +66,8 @@ function EditTest() {
       const data = await response.json();
 
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Updated Testimonial Successfully") {
         navigate("/superadmin/tests");
@@ -157,6 +161,8 @@ function EditTest() {
                   </div>
                 </div>
               </div>
+
+              <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                 <button>Update</button>

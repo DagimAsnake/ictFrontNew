@@ -31,7 +31,7 @@ function ForgetPassword() {
       console.log(data);
 
       if (data.msg === "Reset Password link is sent Successfully") {
-        navigate("/department/requests");
+        // navigate("/department/requests");
       }
     };
 

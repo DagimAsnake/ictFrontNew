@@ -9,6 +9,7 @@ function LogInvestor() {
 
   const [companyname, setCompanyname] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,6 +36,8 @@ function LogInvestor() {
       const data = await response.json();
       console.log(data);
 
+      setErrMsg(data.msg);
+
       const remainingMilliseconds = 60 * 60 * 1000;
       const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
 
@@ -57,6 +60,7 @@ function LogInvestor() {
           <div className="grid grid-cols-3">
             <div></div>
             <div className="w-full bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
+              <p className="text-red-500 text-lg">{errMsg}</p>
               <form onSubmit={submitHandler}>
                 <div className="text-xl font-bold text-blue-500 my-3">
                   <h4 className="mb-2">Company Name</h4>

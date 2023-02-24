@@ -45,6 +45,8 @@ function Report() {
 
   const departmentName = "investor";
 
+  const [errMsg, setErrMsg] = useState("");
+
   useEffect(() => {
     const datafetch = async () => {
       const response = await fetch(
@@ -85,9 +87,6 @@ function Report() {
     formData.append("firedExp", firedExp);
     formData.append("firedTotal", firedTotal);
 
-    // formData.append("total_number_of_worker", total_number_of_workers);
-    // formData.append("number_of_workers_hired", number_of_workers_hired);
-    // formData.append("number_of_workers_resigned", number_of_workers_resigned);
     formData.append("average_worker_per_month", avgWorker);
     formData.append("turn_over_rate", turnOver);
     formData.append("job_creation", jobCre);
@@ -117,6 +116,8 @@ function Report() {
 
       const data = await response.json();
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Report Sent Successfully") {
         navigate("/investor/myrequest");
@@ -521,6 +522,8 @@ function Report() {
               </div>
             </div>
           </div>
+
+          <p className="text-red-500 text-lg my-5 mx-10">{errMsg}</p>
 
           <div className="w-44 m-10 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
             <button>Send</button>

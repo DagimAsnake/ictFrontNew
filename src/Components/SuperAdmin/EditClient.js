@@ -12,6 +12,8 @@ function EditClient() {
   const [title, setTitle] = useState("");
   const [logo, setLogo] = useState(null);
 
+  const [errMsg, setErrMsg] = useState("");
+
   useEffect(() => {
     const addreport = async () => {
       const response = await fetch(`http://localhost:8080/clients/${cliid}`, {
@@ -26,6 +28,7 @@ function EditClient() {
 
       const data = await response.json();
       console.log(data);
+
       setTitle(data.msg.name);
       setLogo(data.msg.logo);
     };
@@ -52,6 +55,8 @@ function EditClient() {
 
       const data = await response.json();
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Client Edited Successfully") {
         navigate("/superadmin/clients");
@@ -108,6 +113,8 @@ function EditClient() {
                   className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                 />
               </div>
+
+              <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                 <button> Update</button>

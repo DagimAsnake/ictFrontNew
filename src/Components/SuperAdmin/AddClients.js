@@ -7,6 +7,8 @@ function AddClients() {
   const [title, setTitle] = useState("");
   const [logo, setLogo] = useState(null);
 
+  const [errMsg, setErrMsg] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -26,6 +28,8 @@ function AddClients() {
 
       const data = await response.json();
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Client Added Successfully") {
         navigate("/superadmin/clients");
@@ -82,6 +86,8 @@ function AddClients() {
                   className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                 />
               </div>
+
+              <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                 <button> Submit</button>

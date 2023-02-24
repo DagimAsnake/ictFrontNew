@@ -14,6 +14,8 @@ function EditService() {
   const [department, setDepartment] = useState("");
   const [icon, setIcon] = useState(null);
 
+  const [errMsg, setErrMsg] = useState("");
+
   useEffect(() => {
     const addreport = async () => {
       const response = await fetch(
@@ -64,6 +66,8 @@ function EditService() {
 
       const data = await response.json();
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Service Updated Successfully") {
         navigate("/superadmin/services");
@@ -196,8 +200,10 @@ function EditService() {
                 </div>
               </div>
 
+              <p className="text-red-500 text-lg">{errMsg}</p>
+
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button>Send</button>
+                <button>Update</button>
               </div>
             </form>
           </div>

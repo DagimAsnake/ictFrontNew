@@ -10,6 +10,8 @@ function DecReason() {
   const { id } = useParams();
   const [reason, setReason] = useState("");
 
+  const [errMsg, setErrMsg] = useState("");
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -33,6 +35,8 @@ function DecReason() {
       const data = await response.json();
 
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Task Declined Successfully") {
         navigate("/superadmin/decline");
@@ -67,6 +71,8 @@ function DecReason() {
                 </textarea>
               </div>
             </div>
+
+            <p className="text-red-500 text-lg">{errMsg}</p>
 
             <div className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
               <button onClick={submitHandler}> Send</button>

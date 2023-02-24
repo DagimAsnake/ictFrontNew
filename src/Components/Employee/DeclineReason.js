@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import EmpAuthContext from "../Store/Emp-authContext";
 
@@ -10,6 +10,8 @@ function DeclineReason() {
   const { id } = useParams();
 
   const [reason, setReason] = useState("");
+
+  const [errMsg, setErrMsg] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -34,6 +36,8 @@ function DeclineReason() {
       const data = await response.json();
 
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "Escalated Task Successfully") {
         navigate("/employee/task");
@@ -67,6 +71,8 @@ function DeclineReason() {
                 ></textarea>
               </div>
             </div>
+
+            <p className="text-red-500 text-lg">{errMsg}</p>
 
             <div className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
               <button onClick={submitHandler}> Send</button>

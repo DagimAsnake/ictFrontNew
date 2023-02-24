@@ -14,6 +14,8 @@ function AddEmployee() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Employee");
 
+  const [errMsg, setErrMsg] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -41,6 +43,8 @@ function AddEmployee() {
       const data = await response.json();
 
       console.log(data);
+
+      setErrMsg(data.msg);
 
       if (data.msg === "User created successfully") {
         navigate("/department/employee");
@@ -202,6 +206,8 @@ function AddEmployee() {
                   />
                 </div>
               </div>
+
+              <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                 <button>Send</button>

@@ -16,6 +16,8 @@ function Request() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
+  const [errMsg, setErrMsg] = useState("");
+
   useEffect(() => {
     const datafetch = async () => {
       const response = await fetch(
@@ -81,16 +83,14 @@ function Request() {
       const data = await response.json();
       console.log(data);
 
+      setErrMsg(data.msg);
+
       if (data.msg === "Task submitted Successfully") {
         navigate("/investor/myrequest");
       }
     };
 
     addrequest();
-
-    // ictService: ict,
-    // facilityService: facility,
-    // investorService: investor,
   };
 
   return (
@@ -389,6 +389,8 @@ function Request() {
                   />
                 </div>
               </div>
+
+              <p className="text-red-500 text-lg mt-5">{errMsg}</p>
 
               <div className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                 <button> Send</button>
