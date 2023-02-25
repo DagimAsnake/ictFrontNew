@@ -75,11 +75,16 @@ import EditTest from "./Components/SuperAdmin/EditTest";
 import DelTest from "./Components/SuperAdmin/DelTest";
 import DecReason from "./Components/SuperAdmin/DecReason";
 import DashboardSup from "./Components/SuperAdmin/DashboardSup";
+import Gallery from "./Components/SuperAdmin/Gallery";
+import UpcomingEvents from "./Components/SuperAdmin/UpcomingEvents";
+import BackgroundImage from "./Components/SuperAdmin/BackgroundImage";
+import AddEvents from "./Components/SuperAdmin/AddEvents";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
 import Home from "./Components/Home/Home";
 import NotFound404 from "./Components/NotFound404";
+import Contact from "./Components/Home/ContactUs/Contact";
 
 function App() {
   const invAuthCtx = useContext(InvAuthContext);
@@ -89,6 +94,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
         <Route
           path="/department/"
           element={
@@ -221,6 +227,10 @@ function App() {
           <Route path="test/delete/:testid" element={<DelTest />} />
           <Route path=":id/decline" element={<DecReason />} />
           <Route path="dashboard" element={<DashboardSup />} />
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="events" element={<UpcomingEvents />} />
+          <Route path="backImage" element={<BackgroundImage />} />
+          <Route path="addevent" element={<AddEvents />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

@@ -5,7 +5,7 @@ import Kena from "../../assets/kena.png";
 function Navbar() {
   return (
     <>
-      <div className=" fixed w-screen">
+      <div className="fixed w-screen z-10">
         <div className="bg-white h-16 px-4 border-b-4 border-neutral-200 flex justify-end items-center">
           {/* <div className="fixed"> */}
           <div className="relative inline-block text-blue-600">

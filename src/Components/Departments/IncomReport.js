@@ -33,7 +33,7 @@ function IncomReport() {
         {isLoading && <h3>Loading......</h3>}
 
         {!isLoading && requestEmployee.length <= 0 && (
-          <h3 className="mt-5">There are no Departments.</h3>
+          <h3 className="mt-5">There are no Investors.</h3>
         )}
 
         <div className="grid grid-cols-3 gap-10 mb-10 mx-5">

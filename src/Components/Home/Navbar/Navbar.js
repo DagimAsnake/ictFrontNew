@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import gearIcon from "./gear.svg";
 import InvAuthContext from "../../Store/Inv-authContext";
 
 function Navbar() {
+  const { pathname } = useLocation();
+
   const invAuthCtx = useContext(InvAuthContext);
 
   const isInvLoggedIn = invAuthCtx.isInvLoggedIn;
@@ -22,13 +24,31 @@ function Navbar() {
 
         <div>
           <ul className=" p-6 text-[20px] flex justify-center items-center">
-            <li className="mr-10 text-[#4879F5] cursor-pointer">
+            <li
+              className={
+                pathname === "/service"
+                  ? "mr-10 p-2 text-[#4879F5] cursor-pointer rounded bg-neutral-200"
+                  : "mr-10 p-2 text-[#4879F5] cursor-pointer rounded hover:bg-neutral-200"
+              }
+            >
               <a>Services</a>
             </li>
-            <li className="mr-10 text-[#4879F5] cursor-pointer">
-              <a>Contacts</a>
+            <li
+              className={
+                pathname === "/contact"
+                  ? "mr-10 p-2 text-[#4879F5] cursor-pointer rounded bg-neutral-200"
+                  : "mr-10 p-2 text-[#4879F5] cursor-pointer rounded hover:bg-neutral-200"
+              }
+            >
+              <Link to={"/contact"}> Contacts </Link>
             </li>
-            <li className="mr-10 text-[#4879F5] cursor-pointer">
+            <li
+              className={
+                pathname === "/clients"
+                  ? "mr-10 p-2 text-[#4879F5] cursor-pointer rounded bg-neutral-200"
+                  : "mr-10 p-2 text-[#4879F5] cursor-pointer rounded hover:bg-neutral-200"
+              }
+            >
               <a>Clients</a>
             </li>
             <li className="border-2 py-[13px] px-[36px] bg-[#4879F5] text-white rounded-[7px] cursor-pointer">
