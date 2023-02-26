@@ -26,6 +26,15 @@ function Navbar() {
           <ul className=" p-6 text-[20px] flex justify-center items-center">
             <li
               className={
+                pathname === "/"
+                  ? "mr-10 p-2 text-[#4879F5] cursor-pointer rounded bg-neutral-200"
+                  : "mr-10 p-2 text-[#4879F5] cursor-pointer rounded hover:bg-neutral-200"
+              }
+            >
+              <Link to={"/"}>Home</Link>
+            </li>
+            <li
+              className={
                 pathname === "/service"
                   ? "mr-10 p-2 text-[#4879F5] cursor-pointer rounded bg-neutral-200"
                   : "mr-10 p-2 text-[#4879F5] cursor-pointer rounded hover:bg-neutral-200"

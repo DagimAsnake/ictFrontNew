@@ -7,6 +7,7 @@ import Success from "./Success/Success";
 import Testimonials from "./Testimonials/Testimonials";
 import Clients from "./Clients/Clients";
 import Footer from "./Footer/Footer";
+// import SimpleMap from "./Map/Map";
 
 function Home() {
   return (
@@ -19,6 +20,7 @@ function Home() {
         <Testimonials />
         <Clients />
         <Footer />
+        {/* <SimpleMap /> */}
       </div>
     </>
   );
