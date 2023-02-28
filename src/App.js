@@ -22,6 +22,8 @@ import Download from "./Components/Departments/Download";
 import DeleteEmp from "./Components/Departments/DeleteEmp";
 import ForgetPassword from "./Components/Departments/ForgetPassword";
 import ChangePassword from "./Components/Departments/ChangePassword";
+import UpdatePassDep from "./Components/Departments/UpdatePassDep";
+import SettingDep from "./Components/Departments/SettingDep";
 import LayoutEmp from "./Components/Employee/LayoutEmp";
 import Tasks from "./Components/Employee/Tasks";
 import EmpDetails from "./Components/Employee/EmpDetails";
@@ -31,6 +33,8 @@ import DeclineReason from "./Components/Employee/DeclineReason";
 import RequestInt from "./Components/Employee/RequestInt";
 import ForgetPasswordUser from "./Components/Employee/ForgetPasswordUser";
 import ChangePasswordUser from "./Components/Employee/ChangePasswordUser";
+import UpdatePassword from "./Components/Employee/UpdatePassword";
+import Setting from './Components/Employee/Setting'
 import LayoutInv from "./Components/Investor/LayoutInv";
 import InvDashboard from "./Components/Investor/InvDashboard";
 import Request from "./Components/Investor/Request";
@@ -43,6 +47,8 @@ import DecRequest from "./Components/Investor/DecRequest";
 import Rating from "./Components/Investor/Rating";
 import ForgetPasswordInvestor from "./Components/Investor/ForgetPasswordInvestor";
 import ChangePasswordInvestor from "./Components/Investor/ChangePasswordInvestor";
+import UpdatePassInvestor from "./Components/Investor/UpdatePassInvestor";
+import SettingInvestor from "./Components/Investor/SettingInvestor";
 import LayoutSup from "./Components/SuperAdmin/LayoutSup";
 import Department from "./Components/SuperAdmin/Department";
 import Investor from "./Components/SuperAdmin/Investor";
@@ -82,6 +88,8 @@ import AddEvents from "./Components/SuperAdmin/AddEvents";
 import DetailEvent from "./Components/SuperAdmin/DetailEvent";
 import EditEvent from "./Components/SuperAdmin/EditEvent";
 import DelEvent from "./Components/SuperAdmin/DelEvent";
+import UpdatePasswordSuper from "./Components/SuperAdmin/UpdatePasswordSuper";
+import SettingSuper from './Components/SuperAdmin/SettingSuper'
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -123,6 +131,8 @@ function App() {
           <Route path="viewreport/:name" element={<ViewReport />} />
           <Route path="viewreport/download/:name" element={<Folder />} />
           <Route path="viewreport/download" element={<Download />} />
+          <Route path="setting" element={<SettingDep />} />
+          <Route path="changepassword" element={<UpdatePassDep />} />
         </Route>
         <Route>
           <Route
@@ -149,6 +159,8 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="decreason/:id" element={<DeclineReason />} />
           <Route path="request" element={<RequestInt />} />
+          <Route path="setting" element={<Setting />} />
+          <Route path="changepassword" element={<UpdatePassword />} />
         </Route>
         <Route>
           <Route
@@ -178,6 +190,8 @@ function App() {
           <Route path=":id" element={<CompRequest />} />
           <Route path="decline" element={<DecRequest />} />
           <Route path="rating/:id" element={<Rating />} />
+          <Route path="setting" element={<SettingInvestor />} />
+          <Route path="changepassword" element={<UpdatePassInvestor />} />
         </Route>
         <Route>
           <Route
@@ -237,6 +251,8 @@ function App() {
           <Route path="eve/details/:eventid" element={<DetailEvent />} />
           <Route path="eve/edit/:eventid" element={<EditEvent />} />
           <Route path="event/delete/:eventid" element={<DelEvent />} />
+          <Route path="setting" element={<SettingSuper />} />
+          <Route path="changepassword" element={<UpdatePasswordSuper />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />
