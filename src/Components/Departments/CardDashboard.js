@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import DepAuthContext from "../Store/Dep-authContext";
 
 function CardDashboard() {
+  const depAuthCtx = useContext(DepAuthContext);
+
+  const [totalEmp, setTotalEmp] = useState(0);
+  const [totalReq, setTotalReq] = useState(0);
+  const [canceled, setCanceled] = useState(0);
+  const [completed, setCompleted] = useState(0);
+
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      const response = await fetch(
+        "http://localhost:8080/user/department/dashboarddata",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + depAuthCtx.token,
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+
+      setTotalEmp(data.msg.total_employees);
+      setTotalReq(data.msg.totalrequest);
+      setCanceled(data.msg.canceled);
+      setCompleted(data.msg.completed);
+    };
+    fetchEmployee();
+  }, [depAuthCtx]);
+
   return (
     <>
       <div className="grid grid-cols-4 gap-20 mx-10">
@@ -9,7 +39,7 @@ function CardDashboard() {
             <div>
               <p className="font-normal text-gray-700">Total Employees</p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                3
+                {totalEmp}
               </h6>
             </div>
 
@@ -39,7 +69,7 @@ function CardDashboard() {
                 Total Incoming Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                21
+                {totalReq}
               </h6>
             </div>
 
@@ -66,10 +96,10 @@ function CardDashboard() {
           <div className="flex justify-evenly">
             <div className="">
               <p className="font-normal text-gray-700">
-                Total Escalated Requests
+                Total Declined Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                09
+                {canceled}
               </h6>
             </div>
 
@@ -99,7 +129,7 @@ function CardDashboard() {
                 Total Completed Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                11
+                {completed}
               </h6>
             </div>
 

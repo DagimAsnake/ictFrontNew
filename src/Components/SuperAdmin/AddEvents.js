@@ -1,13 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import EmpAuthContext from "../Store/Emp-authContext";
 
 function AddEvents() {
+  const empAuthCtx = useContext(EmpAuthContext);
+
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState(null);
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
 
+  const [errMsg, setErrMsg] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("images", photo);
+    formData.append("date", date);
+    formData.append("description", description);
+
+    const addreport = async () => {
+      const response = await fetch("http://localhost:8080/home/event/create", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: "Bearer " + empAuthCtx.token,
+        },
+      });
+
+      if (!response.ok) {
+        console.log("something is wrong");
+      }
+      const data = await response.json();
+      console.log(data);
+
+      setErrMsg(data.msg);
+
+      if (data.msg === "Event Posted Successfully") {
+        navigate("/superadmin/events");
+      }
+    };
+
+    addreport();
   };
 
   return (
@@ -52,7 +90,8 @@ function AddEvents() {
                 <div className="text-xl font-bold text-blue-500 my-3">
                   <h4 className="mb-2">Photo</h4>
                   <input
-                    name="photo"
+                    multiple
+                    name="images"
                     onChange={(e) => setPhoto(e.target.files[0])}
                     type="file"
                     className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
@@ -104,6 +143,12 @@ function AddEvents() {
                       </textarea>
                     </div>
                   </div>
+                </div>
+
+                <p className="text-red-500 text-lg">{errMsg}</p>
+
+                <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
+                  <button> Submit</button>
                 </div>
               </form>
             </div>

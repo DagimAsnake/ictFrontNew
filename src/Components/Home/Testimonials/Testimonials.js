@@ -37,7 +37,7 @@ function Testimonials() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 pl-[99px]">
+      <div className="grid grid-cols-3 pl-[100px]">
         {isLoading && <h1>Loading</h1>}
 
         {!isLoading &&

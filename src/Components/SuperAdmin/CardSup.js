@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import EmpAuthContext from "../Store/Emp-authContext";
 
 function CardSup() {
+  const empAuthCtx = useContext(EmpAuthContext);
+
+  const [totalEmp, setTotalEmp] = useState(0);
+  const [totalReq, setTotalReq] = useState(0);
+  const [canceled, setCanceled] = useState(0);
+  const [completed, setCompleted] = useState(0);
+
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      const response = await fetch("http://localhost:8080/user/dashboarddata", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + empAuthCtx.token,
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+
+      setTotalEmp(data.msg.total_employees);
+      setTotalReq(data.msg.totalrequest);
+      setCanceled(data.msg.canceled);
+      setCompleted(data.msg.completed);
+    };
+    fetchEmployee();
+  }, [empAuthCtx]);
+
   return (
     <>
       <div className="grid grid-cols-4 gap-20 mx-10">
         <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-16 w-80">
           <div className="flex justify-evenly">
             <div>
-              <p className="font-normal text-gray-700">Total Departments</p>
+              <p className="font-normal text-gray-700">Total Employees</p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                4
+                {totalEmp}
               </h6>
             </div>
 
@@ -39,7 +66,7 @@ function CardSup() {
                 Total Incoming Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                15
+                {totalReq}
               </h6>
             </div>
 
@@ -69,7 +96,7 @@ function CardSup() {
                 Total Declined Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                20
+                {canceled}
               </h6>
             </div>
 
@@ -99,7 +126,7 @@ function CardSup() {
                 Total Completed Requests
               </p>
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                21
+                {completed}
               </h6>
             </div>
 

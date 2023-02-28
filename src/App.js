@@ -79,6 +79,9 @@ import Gallery from "./Components/SuperAdmin/Gallery";
 import UpcomingEvents from "./Components/SuperAdmin/UpcomingEvents";
 import BackgroundImage from "./Components/SuperAdmin/BackgroundImage";
 import AddEvents from "./Components/SuperAdmin/AddEvents";
+import DetailEvent from "./Components/SuperAdmin/DetailEvent";
+import EditEvent from "./Components/SuperAdmin/EditEvent";
+import DelEvent from "./Components/SuperAdmin/DelEvent";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -183,7 +186,7 @@ function App() {
           />
           <Route
             path="/auth/investor/passwordreset/:invId/:token"
-            element={<ChangePassword />}
+            element={<ChangePasswordInvestor />}
           />
         </Route>
         <Route
@@ -228,9 +231,12 @@ function App() {
           <Route path=":id/decline" element={<DecReason />} />
           <Route path="dashboard" element={<DashboardSup />} />
           <Route path="gallery" element={<Gallery />} />
-          <Route path="events" element={<UpcomingEvents />} />
           <Route path="backImage" element={<BackgroundImage />} />
           <Route path="addevent" element={<AddEvents />} />
+          <Route path="events" element={<UpcomingEvents />} />
+          <Route path="eve/details/:eventid" element={<DetailEvent />} />
+          <Route path="eve/edit/:eventid" element={<EditEvent />} />
+          <Route path="event/delete/:eventid" element={<DelEvent />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

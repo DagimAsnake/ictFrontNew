@@ -13,7 +13,7 @@ function Contact() {
     event.preventDefault();
 
     const addrequest = async () => {
-      const response = await fetch("http://localhost:8080/", {
+      const response = await fetch("http://localhost:8080/home/contactus", {
         method: "POST",
         body: JSON.stringify({
           name: name,
