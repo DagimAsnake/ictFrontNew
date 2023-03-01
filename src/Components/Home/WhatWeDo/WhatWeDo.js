@@ -25,7 +25,7 @@ function WhatWeDo() {
 
   return (
     <div className="">
-      <div className="flex flex-col items-center mt-[225px]">
+      <div className="flex flex-col items-center mt-[30px]">
         <h1 className="font-[300] text-[36px] leading-[22px] text-[#00000094] underline mb-[30.5px]">
           What We Do ?
         </h1>

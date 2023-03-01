@@ -7,6 +7,7 @@ import Success from "./Success/Success";
 import Testimonials from "./Testimonials/Testimonials";
 import Clients from "./Clients/Clients";
 import Footer from "./Footer/Footer";
+import Event from './Events/Event'
 // import SimpleMap from "./Map/Map";
 
 function Home() {
@@ -18,6 +19,7 @@ function Home() {
         <WhatWeDo />
         <Success />
         <Testimonials />
+        <Event />
         <Clients />
         <Footer />
         {/* <SimpleMap /> */}

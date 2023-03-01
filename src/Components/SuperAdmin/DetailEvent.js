@@ -51,9 +51,9 @@ function DetailEvent() {
             <h4 className="text-blue-500 text-2xl mr-4">Date:</h4>{" "}
             <div className="pt-2"> {requestData.date} </div>
           </div>
-          <div className="flex justify-start p-5">
+          <div className="p-5">
                   <img
-                    className="w-[110px] h-[110px] rounded-[55px] ml-10"
+                    className="w-[110px] h-[110px] ml-10"
                     src={"http://localhost:8080/" + requestData.picture}
                     alt={requestData.title}
                   />
