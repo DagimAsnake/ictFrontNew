@@ -124,7 +124,7 @@ function LogEmployee() {
               </div>
 
               <div>
-                <Link to="/empoyee/forgetpassword" className="text-blue-500">
+                <Link to="/empoyee/forgetpassword" className="text-blue-500 hover:underline">
                   forget password?
                 </Link>
               </div>

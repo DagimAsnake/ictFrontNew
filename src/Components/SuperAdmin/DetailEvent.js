@@ -54,7 +54,7 @@ function DetailEvent() {
           <div className="p-5">
                   <img
                     className="w-[110px] h-[110px] ml-10"
-                    src={"http://localhost:8080/" + requestData.picture}
+                    src={"http://localhost:8080/" + requestData.event}
                     alt={requestData.title}
                   />
              </div>

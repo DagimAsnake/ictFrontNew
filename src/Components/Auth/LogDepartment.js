@@ -124,7 +124,7 @@ function LogDepartment() {
               </div>
 
               <div>
-                <Link to="/department/forgetpassword" className="text-blue-500">
+                <Link to="/department/forgetpassword" className="text-blue-500 hover:underline">
                   forget password?
                 </Link>
               </div>

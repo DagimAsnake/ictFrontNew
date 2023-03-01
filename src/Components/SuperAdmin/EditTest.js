@@ -80,12 +80,12 @@ function EditTest() {
   return (
     <>
       <div className="bg-neutral-50">
-        <div className="text-3xl text-center  text-blue-500 font-bold">
-          Edit Testimonial
-        </div>
-
-        <div className="m-5 mx-96">
-          <div className="w-full bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
+      <div className="m-auto py-16 min-h-screen flex items-center justify-center">
+          <div className="w-1/2">
+            <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
+              <div className="text-lg text-center text-blue-500 font-bold">
+                Edit Testimonial
+              </div>
             <form onSubmit={submitHandler}>
               <div className="text-xl font-bold text-blue-500 my-3">
                 <h4 className="mb-2">Author</h4>
@@ -170,6 +170,7 @@ function EditTest() {
             </form>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

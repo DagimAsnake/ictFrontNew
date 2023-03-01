@@ -84,11 +84,12 @@ function EditInvestor() {
   return (
     <>
       <div className="bg-neutral-50 bg">
-        <div className="text-3xl text-center text-blue-500 font-bold">
-          Edit Investor
-        </div>
-        <div className="m-5 mx-96">
-          <div className="w-full bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
+      <div className="m-auto py-16 min-h-screen flex items-center justify-center">
+          <div className="w-1/2">
+            <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
+              <div className="text-lg text-center text-blue-500 font-bold">
+                Edit Investor
+              </div>
             <form onSubmit={submitHandler}>
               <div className="text-xl font-bold text-blue-500 my-3">
                 <h4 className="mb-2">Company Name</h4>
@@ -248,6 +249,7 @@ function EditInvestor() {
             </form>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

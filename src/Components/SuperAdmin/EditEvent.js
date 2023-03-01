@@ -47,7 +47,7 @@ function EditEvent() {
 
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("images", photo);
+    formData.append("event", photo);
     formData.append("date", date);
     formData.append("description", description);
 
@@ -122,7 +122,7 @@ function EditEvent() {
                   <h4 className="mb-2">Photo</h4>
                   <input
                     multiple
-                    name="images"
+                    name="event"
                     onChange={(e) => setPhoto(e.target.files[0])}
                     type="file"
                     className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"

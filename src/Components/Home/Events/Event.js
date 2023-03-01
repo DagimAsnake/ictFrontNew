@@ -23,6 +23,10 @@ const Event = () => {
 
     return (
         <>
+        <div className="mb-[100px]">
+        <p className="font-[300] font-bold text-[40px] text-[#4879F5] text-center mb-[50px]">
+          Upcoming Events
+        </p>
         <div className="grid grid-cols-3 pl-[100px]">
         {isLoading && <h1>Loading</h1>}
 
@@ -30,7 +34,7 @@ const Event = () => {
   data.msg.map((d) => (
       <>
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-2xl">
-        <img className="rounded-t-lg"  src={"http://localhost:8080/" + d.picture} alt={d.title} />
+        <img className="rounded-t-lg"  src={"http://localhost:8080/" + d.event} alt={d.title} />
         <div className="p-5">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{d.title}</h5>
             <p className="mb-1 text-sm">{d.date}</p>
@@ -41,7 +45,7 @@ const Event = () => {
       )
   )}
 </div>
-
+</div>
         </>
     )
 }

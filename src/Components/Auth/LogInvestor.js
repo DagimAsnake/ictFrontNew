@@ -123,7 +123,7 @@ function LogInvestor() {
               </div>
 
               <div>
-                <Link to="/investor/forgetpassword" className="text-blue-500">
+                <Link to="/investor/forgetpassword" className="text-blue-500 hover:underline">
                   forget password?
                 </Link>
               </div>

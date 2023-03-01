@@ -23,7 +23,7 @@ function Testimonials() {
   }, []);
 
   return (
-    <div className="mt-[83px] flex flex-col mb-[171px]">
+    <div className="mt-[83px] flex flex-col mb-[100px]">
       <div>
         <p className="font-[300] text-[36px] leading-[22px] underline mb-[16px] text-center text-[#00000094]">
           Testimonials
