@@ -51,20 +51,13 @@ function DetailEvent() {
             <h4 className="text-blue-500 text-2xl mr-4">Date:</h4>{" "}
             <div className="pt-2"> {requestData.date} </div>
           </div>
-          {requestData.picture?.length > 0 && (
-            <div>
-              {requestData.picture?.map((im) => {
-                <div key={im._id}>
-                  yes
+          <div className="flex justify-start p-5">
                   <img
                     className="w-[110px] h-[110px] rounded-[55px] ml-10"
-                    src={"http://localhost:8080/" + im.path}
-                    alt="event"
+                    src={"http://localhost:8080/" + requestData.picture}
+                    alt={requestData.title}
                   />
-                </div>;
-              })}
-            </div>
-          )}
+             </div>
         </div>
 
         <div className="border-l-4">

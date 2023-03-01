@@ -36,7 +36,7 @@ function EditEvent() {
       setTitle(data.msg.title);
       setDate(data.msg.date);
       setDescription(data.msg.description);
-        // setPhoto(data.msg.picture)
+        setPhoto(data.msg.picture)
     };
 
     singleFetch();
@@ -45,7 +45,38 @@ function EditEvent() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("images", photo);
+    formData.append("date", date);
+    formData.append("description", description);
+
+    const addreport = async () => {
+      const response = await fetch(
+        `http://localhost:8080/home/event/edit/${eventid}`,
+        {
+          method: "PUT",
+          body: formData,
+          headers: {
+            Authorization: "Bearer " + empAuthCtx.token,
+          },
+        }
+      );
+      if (!response.ok) {
+        console.log("something is wrong");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      setErrMsg(data.msg);
+
+      if (data.msg === "Event Edited Successfully") {
+        navigate("/superadmin/events");
+      }
+    };
+
+    addreport();    
   };
 
   return (

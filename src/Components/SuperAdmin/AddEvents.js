@@ -16,7 +16,6 @@ function AddEvents() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("images", photo);
@@ -92,7 +91,7 @@ function AddEvents() {
                   <input
                     multiple
                     name="images"
-                    onChange={(e) => setPhoto(e.target.files[0])}
+                    onChange={(e) => setPhoto(e.target.files[0]) }
                     type="file"
                     className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                   />
