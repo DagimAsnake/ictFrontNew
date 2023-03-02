@@ -4,9 +4,13 @@ function ForgetPasswordInvestor() {
   const [email, setEmail] = useState("");
   const [isLinkSent, setIsLinkSent] = useState("");
 
+ const [isPending, setIsPending] = useState(false)
+
   const submitHandler = (e) => {
     e.preventDefault();
 
+    setIsPending(true)
+   
     const loginRequest = async () => {
       const response = await fetch(
         "http://localhost:8080/auth/investor/forgetpassword",
@@ -28,6 +32,7 @@ function ForgetPasswordInvestor() {
       const data = await response.json();
       console.log(data);
 
+      setIsPending(false)
       setIsLinkSent(data.msg);
     };
 
@@ -74,7 +79,8 @@ function ForgetPasswordInvestor() {
               <p className="text-lg text-pink-500">{isLinkSent}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button>Submit</button>
+              {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
               </div>
             </form>
           </div>

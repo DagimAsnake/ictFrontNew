@@ -15,6 +15,7 @@ function EditInvestor() {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -45,6 +46,8 @@ function EditInvestor() {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    setIsPending(true)
+
     const signUpInvestor = async () => {
       const response = await fetch(
         `http://localhost:8080/user/investor/` + invid,
@@ -71,6 +74,7 @@ function EditInvestor() {
 
       console.log(data);
 
+      setIsPending(false)
       setErrMsg(data.msg);
 
       if (data.msg === "Investor Account Information updated successfully") {
@@ -244,7 +248,8 @@ function EditInvestor() {
               <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button>Update</button>
+              {!isPending && <button> Update</button> }
+                 {isPending && <button disabled> Updating</button> }
               </div>
             </form>
           </div>

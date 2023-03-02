@@ -13,6 +13,7 @@ function EditTest() {
   const [description, setDescription] = useState("");
   const [company, setCompany] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -43,6 +44,8 @@ function EditTest() {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    setIsPending(true)
+
     const signupDepartment = async () => {
       const response = await fetch(
         `http://localhost:8080/testimonial/` + testid,
@@ -67,6 +70,7 @@ function EditTest() {
 
       console.log(data);
 
+      setIsPending(false)
       setErrMsg(data.msg);
 
       if (data.msg === "Updated Testimonial Successfully") {
@@ -165,7 +169,8 @@ function EditTest() {
               <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button>Update</button>
+              {!isPending && <button> Update</button> }
+                 {isPending && <button disabled> Updating</button> }
               </div>
             </form>
           </div>

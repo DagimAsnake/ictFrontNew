@@ -9,8 +9,12 @@ function ChangePasswordUser() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
+
   const submitHandler = (e) => {
     e.preventDefault();
+
+    setIsPending(true)
 
     const loginRequest = async () => {
       const response = await fetch(
@@ -33,6 +37,8 @@ function ChangePasswordUser() {
 
       const data = await response.json();
       console.log(data);
+
+      setIsPending(false)
 
       if (data.msg === "Password Changed Successfully") {
         navigate("/loginEmployee");
@@ -109,7 +115,8 @@ function ChangePasswordUser() {
               </div>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button>Submit</button>
+              {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
               </div>
             </form>
           </div>

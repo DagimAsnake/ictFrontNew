@@ -11,10 +11,13 @@ function AddTest() {
   const [description, setDescription] = useState("");
   const [company, setCompany] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
+
+    setIsPending(true)
 
     const addrequest = async () => {
       const response = await fetch("http://localhost:8080/testimonial/post", {
@@ -37,6 +40,7 @@ function AddTest() {
       const data = await response.json();
       console.log(data);
 
+      setIsPending(false)
       setErrMsg(data.msg);
 
       if (data.msg === "Testimonial Created Successfully") {
@@ -136,7 +140,8 @@ function AddTest() {
                 <p className="text-red-500 text-lg">{errMsg}</p>
 
                 <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                  <button>Send</button>
+                {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
                 </div>
               </form>
             </div>

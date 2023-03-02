@@ -12,8 +12,12 @@ function RequestInt() {
   const [desc, setDesc] = useState("");
   const [date, setDate] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
+
+    setIsPending(true)
 
     const addrequest = async () => {
       const response = await fetch(
@@ -40,6 +44,8 @@ function RequestInt() {
 
       const data = await response.json();
       console.log(data);
+
+      setIsPending(false)
 
       if (data.msg === "Task submitted Successfully") {
         navigate("/employee/task");
@@ -212,7 +218,8 @@ function RequestInt() {
               </div>
 
               <div className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button> Send</button>
+              {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
               </div>
             </div>
           </form>

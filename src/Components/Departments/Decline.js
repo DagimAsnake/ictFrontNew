@@ -10,10 +10,13 @@ function Decline() {
   const { id } = useParams();
   const [reason, setReason] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    setIsPending(true)
 
     const DeclineHandler = async () => {
       const response = await fetch(`http://localhost:8080/task/${id}/decline`, {
@@ -33,6 +36,7 @@ function Decline() {
 
       console.log(data);
 
+      setIsPending(false)
       setErrMsg(data.msg);
 
       if (data.msg === "Task declined Successfully") {
@@ -72,7 +76,8 @@ function Decline() {
             <p className="text-red-500 text-lg">{errMsg}</p>
 
             <div className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-              <button onClick={submitHandler}> Send</button>
+              {!isPending && <button onClick={submitHandler}> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
             </div>
           </div>
         </div>

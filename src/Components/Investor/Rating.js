@@ -11,6 +11,8 @@ function Rating() {
   const [empid, setEmpId] = useState("");
   const [taskid, setTaskId] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
+
   useEffect(() => {
     const singleFetch = async () => {
       const response = await fetch(`http://localhost:8080/task/view/` + id, {
@@ -32,6 +34,9 @@ function Rating() {
   }, [id, invAuthCtx]);
 
   const ratingOnChange = (rating) => {
+
+    setIsPending(true)
+
     const AssignedTask = async () => {
       const response = await fetch(
         `http://localhost:8080/employee/${empid}/rating`,
@@ -51,6 +56,8 @@ function Rating() {
       }
       const data = await response.json();
       console.log(data);
+
+      setIsPending(false)
     };
 
     AssignedTask();
@@ -72,7 +79,8 @@ function Rating() {
             />
             <Link to={`/investor/${taskid}`}>
               <div className="w-40 text-center text-blue-500 rounded-lg hover:bg-blue-400 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button> Submit</button>
+              {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
               </div>
             </Link>
           </div>

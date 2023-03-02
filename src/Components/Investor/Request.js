@@ -16,6 +16,7 @@ function Request() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
+  const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -56,6 +57,8 @@ function Request() {
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
+    setIsPending(true)
+
     const addrequest = async () => {
       const response = await fetch("http://localhost:8080/task/post", {
         method: "POST",
@@ -83,6 +86,7 @@ function Request() {
       const data = await response.json();
       console.log(data);
 
+      setIsPending(false)
       setErrMsg(data.msg);
 
       if (data.msg === "Task submitted Successfully") {
@@ -393,7 +397,8 @@ function Request() {
               <p className="text-red-500 text-lg mt-5">{errMsg}</p>
 
               <div className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                <button> Send</button>
+              {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
               </div>
             </div>
           </form>

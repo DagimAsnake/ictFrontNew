@@ -11,11 +11,14 @@ const UpdatePassword = () =>{
     const [confirmPassword, setConfirmPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
   
+    const [isPending, setIsPending] = useState(false)
     const [errMsg, setErrMsg] = useState("");
   
     const submitHandler = (e) => {
       e.preventDefault();
   
+      setIsPending(true)
+
       const signupDepartment = async () => {
         const response = await fetch(
           "http://localhost:8080/auth/changepassword",
@@ -41,6 +44,7 @@ const UpdatePassword = () =>{
   
         console.log(data);
   
+        setIsPending(false)
         setErrMsg(data.msg);
   
         if (data.msg === "Password Changed Successfully") {
@@ -150,7 +154,8 @@ const UpdatePassword = () =>{
                 <p className="text-red-500 text-lg">{errMsg}</p>
 
                 <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                  <button> Send</button>
+                {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
                 </div>
               </form>
             </div>

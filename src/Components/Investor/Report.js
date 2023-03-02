@@ -45,6 +45,7 @@ function Report() {
 
   const departmentName = "investor";
 
+  const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -69,6 +70,8 @@ function Report() {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    setIsPending(true)
 
     const formData = new FormData();
     formData.append("file", file);
@@ -117,6 +120,7 @@ function Report() {
       const data = await response.json();
       console.log(data);
 
+      setIsPending(false)
       setErrMsg(data.msg);
 
       if (data.msg === "Report Sent Successfully") {
@@ -526,7 +530,8 @@ function Report() {
           <p className="text-red-500 text-lg my-5 mx-10">{errMsg}</p>
 
           <div className="w-44 m-10 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-            <button>Send</button>
+          {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
           </div>
         </form>
       </div>

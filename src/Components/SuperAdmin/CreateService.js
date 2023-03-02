@@ -12,10 +12,13 @@ function CreateService() {
   const [department, setDepartment] = useState("");
   const [icon, setIcon] = useState(null);
 
+  const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
+
+    setIsPending(true)
 
     const formData = new FormData();
     formData.append("title", title);
@@ -39,6 +42,7 @@ function CreateService() {
       const data = await response.json();
       console.log(data);
 
+      setIsPending(false)
       setErrMsg(data.msg);
 
       if (data.msg === "Service Added Successfully") {
@@ -179,7 +183,8 @@ function CreateService() {
                 <p className="text-red-500 text-lg">{errMsg}</p>
 
                 <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                  <button>Send</button>
+                {!isPending && <button> Submit</button> }
+                 {isPending && <button disabled> Submiting</button> }
                 </div>
               </form>
             </div>
