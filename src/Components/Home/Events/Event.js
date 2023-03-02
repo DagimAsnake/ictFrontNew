@@ -34,7 +34,7 @@ const Event = () => {
   data.msg.map((d) => (
       <>
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-2xl">
-        <img className="rounded-t-lg"  src={"http://localhost:8080/" + d.event} alt={d.title} />
+        <img className="rounded-t-lg w-[385px] h-[320px]"  src={"http://localhost:8080/" + d.event} alt={d.title} />
         <div className="p-5">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{d.title}</h5>
             <p className="mb-1 text-sm">{d.date}</p>

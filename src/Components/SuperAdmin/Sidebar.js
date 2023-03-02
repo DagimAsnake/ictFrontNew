@@ -193,10 +193,10 @@ function Sidebar() {
             </div>
           </Link>
 
-          <Link to="/superadmin/gallery">
+          <Link to="/superadmin/addimage">
             <div
               className={
-                pathname === "/superadmin/gallery"
+                pathname === "/superadmin/addimage"
                   ? "mb-4 bg-neutral-200"
                   : "mb-4 hover:bg-neutral-200"
               }

@@ -84,6 +84,7 @@ import DashboardSup from "./Components/SuperAdmin/DashboardSup";
 import Gallery from "./Components/SuperAdmin/Gallery";
 import UpcomingEvents from "./Components/SuperAdmin/UpcomingEvents";
 import BackgroundImage from "./Components/SuperAdmin/BackgroundImage";
+import GalBack from "./Components/SuperAdmin/GalAndBackImage";
 import AddEvents from "./Components/SuperAdmin/AddEvents";
 import DetailEvent from "./Components/SuperAdmin/DetailEvent";
 import EditEvent from "./Components/SuperAdmin/EditEvent";
@@ -246,6 +247,7 @@ function App() {
           <Route path="dashboard" element={<DashboardSup />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="backImage" element={<BackgroundImage />} />
+          <Route path="addimage" element={<GalBack />} />
           <Route path="addevent" element={<AddEvents />} />
           <Route path="events" element={<UpcomingEvents />} />
           <Route path="eve/details/:eventid" element={<DetailEvent />} />

@@ -88,7 +88,7 @@ function UpcomingEvents() {
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="w-8 h-8 inline-block mr-2"
+                              className="w-8 h-8 inline-block mr-2"
                             >
                               <path
                                 stroke-linecap="round"
@@ -107,7 +107,7 @@ function UpcomingEvents() {
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="w-6 h-6 text-blue-500"
+                              className="w-6 h-6 text-blue-500"
                             >
                               <path
                                 stroke-linecap="round"
@@ -125,7 +125,7 @@ function UpcomingEvents() {
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="w-6 h-6 text-red-500"
+                              className="w-6 h-6 text-red-500"
                             >
                               <path
                                 stroke-linecap="round"

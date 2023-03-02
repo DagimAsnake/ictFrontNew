@@ -13,7 +13,7 @@ function Sidebar() {
 
   return (
     <>
-      <div className="bg-white w-64 text-blue-600 text-xl p-6 flex flex-col border-r-2 border-neutral-200 fixed h-screen z-10">
+      <div className="bg-white w-64 text-blue-600 text-xl p-6 flex flex-col border-r-2 border-neutral-200 fixed h-screen z-20">
         {/* <div className="fixed"> */}
         <h4 className="text-2xl text-center">ICT-PARK</h4>
         <div className="my-10 flex-1">

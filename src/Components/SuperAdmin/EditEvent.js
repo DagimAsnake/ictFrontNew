@@ -37,7 +37,7 @@ function EditEvent() {
       setTitle(data.msg.title);
       setDate(data.msg.date);
       setDescription(data.msg.description);
-        setPhoto(data.msg.picture)
+        setPhoto(data.msg.event)
     };
 
     singleFetch();
