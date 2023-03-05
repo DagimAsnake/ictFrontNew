@@ -24,6 +24,7 @@ import ForgetPassword from "./Components/Departments/ForgetPassword";
 import ChangePassword from "./Components/Departments/ChangePassword";
 import UpdatePassDep from "./Components/Departments/UpdatePassDep";
 import SettingDep from "./Components/Departments/SettingDep";
+import EditDepProfile from "./Components/Departments/EditDepProfile";
 import LayoutEmp from "./Components/Employee/LayoutEmp";
 import Tasks from "./Components/Employee/Tasks";
 import EmpDetails from "./Components/Employee/EmpDetails";
@@ -35,6 +36,7 @@ import ForgetPasswordUser from "./Components/Employee/ForgetPasswordUser";
 import ChangePasswordUser from "./Components/Employee/ChangePasswordUser";
 import UpdatePassword from "./Components/Employee/UpdatePassword";
 import Setting from './Components/Employee/Setting'
+import EditUserProfile from "./Components/Employee/EditUserProfile";
 import LayoutInv from "./Components/Investor/LayoutInv";
 import InvDashboard from "./Components/Investor/InvDashboard";
 import Request from "./Components/Investor/Request";
@@ -49,6 +51,7 @@ import ForgetPasswordInvestor from "./Components/Investor/ForgetPasswordInvestor
 import ChangePasswordInvestor from "./Components/Investor/ChangePasswordInvestor";
 import UpdatePassInvestor from "./Components/Investor/UpdatePassInvestor";
 import SettingInvestor from "./Components/Investor/SettingInvestor";
+import EditInvProfile from "./Components/Investor/EditInvProfile";
 import LayoutSup from "./Components/SuperAdmin/LayoutSup";
 import Department from "./Components/SuperAdmin/Department";
 import Investor from "./Components/SuperAdmin/Investor";
@@ -134,6 +137,7 @@ function App() {
           <Route path="viewreport/download" element={<Download />} />
           <Route path="setting" element={<SettingDep />} />
           <Route path="changepassword" element={<UpdatePassDep />} />
+          <Route path="editprofile" element={<EditDepProfile />} />
         </Route>
         <Route>
           <Route
@@ -162,6 +166,7 @@ function App() {
           <Route path="request" element={<RequestInt />} />
           <Route path="setting" element={<Setting />} />
           <Route path="changepassword" element={<UpdatePassword />} />
+          <Route path="editprofile" element={<EditUserProfile />} />
         </Route>
         <Route>
           <Route
@@ -193,6 +198,7 @@ function App() {
           <Route path="rating/:id" element={<Rating />} />
           <Route path="setting" element={<SettingInvestor />} />
           <Route path="changepassword" element={<UpdatePassInvestor />} />
+          <Route path="editprofile" element={<EditInvProfile />} />
         </Route>
         <Route>
           <Route
