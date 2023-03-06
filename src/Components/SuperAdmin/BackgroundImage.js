@@ -18,7 +18,7 @@ function BackgroundImage() {
     setIsPending(true)
 
     const formData = new FormData();
-    formData.append("backImage", backImage);
+    formData.append("backimg", backImage);
 
     const addreport = async () => {
       const response = await fetch("http://localhost:8080/home/createbackground/create", {
@@ -39,7 +39,9 @@ function BackgroundImage() {
       setIsPending(false)
       setErrMsg(data.msg);
 
-      if (data.msg === "Background Posted Successfully" || "Background Changed Successfully") {
+      if (data.msg === "Background Posted Successfully") {
+        navigate("/superadmin/addimage");
+      } else if (data.msg === "Background Changed Successfully" ) {
         navigate("/superadmin/addimage");
       }
     };
@@ -61,8 +63,8 @@ function BackgroundImage() {
                 <div className="text-xl font-bold text-blue-500 my-3">
                   <h4 className="mb-2">Background Image</h4>
                   <input
-                    name="backImage"
-                    onChange={(e) => setBackImage(e.target.files)}
+                    name="backimg"
+                    onChange={(e) => setBackImage(e.target.files[0])}
                     type="file"
                     className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                   />

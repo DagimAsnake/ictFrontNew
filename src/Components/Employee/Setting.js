@@ -6,7 +6,7 @@ const Setting = () => {
     return(
         <>
         <div className="bg-neutral-50">
-        <div className="text-3xl text-center text-blue-500 font-bold">
+        <div className="text-3xl text-center text-blue-500 font-bold mb-20">
           Setting
         </div>
         <Link
