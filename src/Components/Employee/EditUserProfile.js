@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EmpAuthContext from "../Store/Emp-authContext";
 
@@ -14,6 +14,8 @@ const EditUserProfile = () => {
   
     const [isPending, setIsPending] = useState(false)
     const [errMsg, setErrMsg] = useState("");
+
+    const [role, setRole] = useState('')
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -47,12 +49,37 @@ const EditUserProfile = () => {
           setErrMsg(data.msg);
     
           if (data.msg === "Data Updated Successfully") {
-            navigate("/loginEmployee");
+            if(role === 'Employee'){
+            navigate("/employee/setting");
+            } else if(role === 'Admin') {
+              navigate("/superadmin/setting");
+            }
           }
         };
     
         signUpEmployee();
     }
+
+    useEffect(() => {
+      const datafetch = async () => {
+        const response = await fetch(
+          "http://localhost:8080/auth/verifyusertoken",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + empAuthCtx.token,
+            },
+          }
+        );
+  
+        const data = await response.json();
+        console.log(data);
+
+        setRole(data.payload.role)
+  
+      };
+      datafetch();
+    }, [empAuthCtx]);
 
     return(
         <>

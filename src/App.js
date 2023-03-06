@@ -261,6 +261,7 @@ function App() {
           <Route path="event/delete/:eventid" element={<DelEvent />} />
           <Route path="setting" element={<SettingSuper />} />
           <Route path="changepassword" element={<UpdatePasswordSuper />} />
+          <Route path="editprofile" element={<EditUserProfile />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

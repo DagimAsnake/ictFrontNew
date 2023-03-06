@@ -59,7 +59,7 @@ function LogEmployee() {
             <div className="text-lg text-center text-blue-500 font-bold">
               Log in AS Employee
             </div>
-            <p className="text-red-500 text-lg">{errMsg}</p>
+           
             <form onSubmit={submitHandler}>
               <div className="text-xl font-bold text-blue-500 my-3">
                 <h4 className="mb-2">Username</h4>
@@ -118,6 +118,8 @@ function LogEmployee() {
                   />
                 </div>
               </div>
+
+              <p className="text-red-500 text-lg">{errMsg}</p>
 
               <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
                 <button>Log in</button>
