@@ -1,11 +1,40 @@
+import React, { useState, useEffect } from "react";
 import gearImage from "./gearImage.svg";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Kena from '../../../assets/kena.png'
+// import Kena from '../../../assets/kena.png'
 
 function Header() {
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  useEffect(() => {
+
+    const addreport = async () => {
+      const response = await fetch("http://localhost:8080/home/background");
+
+      if (!response.ok) {
+        console.log("something is wrong");
+      }
+
+      const data = await response.json();
+      console.log(data.msg);
+      setData(data.msg);
+      setIsLoading(false);
+    };
+
+    addreport();
+  }, []);
+
+ 
   return (
-    <div className="shadow-lg" style={{backgroundImage: `url(${Kena})`, backgroundSize: 'con', backgroundRepeat: 'no-repeat' , height: 520}}>
+    <>
+     {isLoading && <h1>Loading</h1>}
+
+     {!isLoading &&
+    <>
+    <div className="shadow-lg" style={{backgroundImage: `url(http://localhost:8080/${data.path})`, backgroundSize: 'con', backgroundRepeat: 'no-repeat' , height: 520}}>
      <div className="con">
     <div className="flex items-center mt-20 leading-[76px] text-[#4879F5]" >
     
@@ -17,10 +46,14 @@ function Header() {
       </div>
       <div>
         <img src={gearImage} alt="gearImage" />
+
       </div>
     </div>
   </div>
   </div>
+  </>
+}
+  </>
   );
 }
 

@@ -94,6 +94,7 @@ import EditEvent from "./Components/SuperAdmin/EditEvent";
 import DelEvent from "./Components/SuperAdmin/DelEvent";
 import UpdatePasswordSuper from "./Components/SuperAdmin/UpdatePasswordSuper";
 import SettingSuper from './Components/SuperAdmin/SettingSuper'
+import DelGallery from "./Components/SuperAdmin/DelGallery";
 import LogDepartment from "./Components/Auth/LogDepartment";
 import LogEmployee from "./Components/Auth/LogEmployee";
 import LogInvestor from "./Components/Auth/LogInvestor";
@@ -262,6 +263,7 @@ function App() {
           <Route path="setting" element={<SettingSuper />} />
           <Route path="changepassword" element={<UpdatePasswordSuper />} />
           <Route path="editprofile" element={<EditUserProfile />} />
+          <Route path="gallery/delete/:galid" element={<DelGallery />} />
         </Route>
         <Route path="/loginDepartment" element={<LogDepartment />} />
         <Route path="/loginEmployee" element={<LogEmployee />} />

@@ -7,18 +7,23 @@ function Gallery() {
 
   const navigate = useNavigate();
 
-  const [gallery, setGallery] = useState(null);
+  const [gallery, setGallery] = useState([]);
 
   const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
+  
+
   const submitHandler = (e) => {
     e.preventDefault();
-
+console.log(gallery)
     setIsPending(true)
 
     const formData = new FormData();
-    formData.append("gallery", gallery);
+    Array.from(gallery).forEach((item) => {
+      formData.append("gallery", item);
+    })
+    
 
     const addreport = async () => {
       const response = await fetch("http://localhost:8080/home/gallary/create", {
@@ -61,8 +66,9 @@ function Gallery() {
                 <div className="text-xl font-bold text-blue-500 my-3">
                   <h4 className="mb-2">Gallery</h4>
                   <input
+                    multiple
                     name="gallery"
-                    onChange={(e) => setGallery(e.target.files[0])}
+                    onChange={(e) => setGallery(e.target.files)}
                     type="file"
                     className="w-full bg-white border border-blue-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                   />

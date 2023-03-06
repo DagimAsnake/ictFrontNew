@@ -8,6 +8,7 @@ import Testimonials from "./Testimonials/Testimonials";
 import Clients from "./Clients/Clients";
 import Footer from "./Footer/Footer";
 import Event from './Events/Event'
+import GalleryPost from "./Gallery/Gallery";
 // import SimpleMap from "./Map/Map";
 
 function Home() {
@@ -19,6 +20,7 @@ function Home() {
         <WhatWeDo />
         <Success />
         <Testimonials />
+        <GalleryPost />
         <Event />
         <Clients />
         <Footer />
