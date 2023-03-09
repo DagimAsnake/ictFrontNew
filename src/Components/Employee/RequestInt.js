@@ -218,8 +218,8 @@ function RequestInt() {
               </div>
 
               <div className="w-44 text-center text-blue-500 rounded-lg hover:bg-blue-400 my-10 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-              {!isPending && <button> Submit</button> }
-                 {isPending && <button disabled> Submiting</button> }
+                {!isPending && <button> Submit</button>}
+                {isPending && <button disabled> Submiting</button>}
               </div>
             </div>
           </form>
