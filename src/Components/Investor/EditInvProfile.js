@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InvAuthContext from "../Store/Inv-authContext";
 
 const EditInvProfile = () => {
-    const invAuthCtx = useContext(InvAuthContext);
+  const invAuthCtx = useContext(InvAuthContext);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [companyName, setCompanyName] = useState("");
   const [name, setName] = useState("");
@@ -16,49 +16,75 @@ const EditInvProfile = () => {
   const [isPending, setIsPending] = useState(false)
   const [errMsg, setErrMsg] = useState("");
 
+  useEffect(() => {
+    const singleFetch = async () => {
+      const response = await fetch(
+        `http://localhost:8080/report/investoraccount`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + invAuthCtx.token,
+          },
+        }
+      );
+      if (!response.ok) {
+        console.log("Something went wrong");
+      }
+      const data = await response.json();
+      console.log(data);
+      setCompanyName(data.msg.companyName)
+      setEmail(data.msg.email)
+      setLocation(data.msg.location)
+      setName(data.msg.contact_person)
+      setPhone(data.msg.contact_phone)
+    };
+
+    singleFetch();
+  }, [invAuthCtx]);
+
   const submitHandler = (e) => {
     e.preventDefault();
 
     setIsPending(true)
 
-  const signUpInvestor = async () => {
-    const response = await fetch("http://localhost:8080/report/edit", {
-      method: "PuT",
-      body: JSON.stringify({
-        companyName: companyName,
-        location: location,
-        contact_person: name,
-        contact_phone: phone,
-        email: email,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + invAuthCtx.token,
-      },
-    });
+    const signUpInvestor = async () => {
+      const response = await fetch("http://localhost:8080/report/edit", {
+        method: "PuT",
+        body: JSON.stringify({
+          companyName: companyName,
+          location: location,
+          contact_person: name,
+          contact_phone: phone,
+          email: email,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + invAuthCtx.token,
+        },
+      });
 
-    if (!response.ok) {
-      console.log("something is wrong");
-    }
+      if (!response.ok) {
+        console.log("something is wrong");
+      }
 
-    const data = await response.json();
+      const data = await response.json();
 
-    console.log(data);
+      console.log(data);
 
-    setIsPending(false)
-    setErrMsg(data.msg);
+      setIsPending(false)
+      setErrMsg(data.msg);
 
-    if (data.msg === "Investor Account Information updated successfully") {
-      navigate("/investor/setting");
-    }
+      if (data.msg === "Investor Account Information updated successfully") {
+        navigate("/investor/setting");
+      }
+    };
+
+    signUpInvestor();
   };
 
-  signUpInvestor();
-};
-  
-    return (
-        <>
-        <div className="bg-neutral-50 bg">
+  return (
+    <>
+      <div className="bg-neutral-50 bg">
         <div className="m-auto py-16 min-h-screen flex items-center justify-center">
           <div className="w-1/2">
             <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-5 mb-20">
@@ -219,16 +245,16 @@ const EditInvProfile = () => {
                 <p className="text-red-500 text-lg">{errMsg}</p>
 
                 <div className="w-44 items-center text-center text-blue-500 rounded-lg hover:bg-blue-400 my-5 hover:text-white p-2 text-xl font-bold cursor-pointer tracking-wider border">
-                {!isPending && <button> Update</button> }
-                 {isPending && <button disabled> Updating</button> }
+                  {!isPending && <button> Update</button>}
+                  {isPending && <button disabled> Updating</button>}
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-        </>
-    )
+    </>
+  )
 }
 
 export default EditInvProfile
